@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STIL · El Pulso Semanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink:   #0D1117;
+    --ink2:  #3D4451;
+    --ink3:  #6B7280;
+    --bg:    #F7F7F5;
+    --white: #FFFFFF;
+    --teal:  #1D9E75;
+    --teal2: #0F766E;
+    --teal3: #E1F5EE;
+    --up:    #059669;
+    --down:  #DC2626;
+    --gold:  #B45309;
+    --goldb: #FEF3C7;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans:  'DM Sans', system-ui, sans-serif;
+  }
+  html, body { min-height: 100vh; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 0 40px;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--ink);
+    padding: 28px 24px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.15);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative; z-index: 2;
+    margin-bottom: 20px;
+  }
+  .header-brand {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: #fff;
+  }
+  .header-brand span { color: #9FE1CB; }
+  .header-pill {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(29,158,117,0.25);
+    color: #9FE1CB;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(159,225,203,0.3);
+  }
+  .header-period {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    position: relative; z-index: 2;
+    margin-bottom: 4px;
+  }
+  .header-headline {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: #fff;
+    line-height: 1.15;
+    position: relative; z-index: 2;
+  }
+  .header-headline em { font-style: italic; color: #9FE1CB; }
+
+  /* ── TREND BADGE ── */
+  .trend-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    position: relative; z-index: 2;
+    font-size: 13px; font-weight: 500;
+  }
+  .trend-badge.up { color: #6EE7B7; }
+  .trend-badge.down { color: #FCA5A5; }
+  .trend-arrow { font-size: 16px; }
+
+  /* ── SECTIONS ── */
+  .section { padding: 20px 20px 0; }
+  .section-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink3); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(13,17,23,0.08);
+  }
+
+  /* ── STAT CARDS ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .stat-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px 16px 14px;
+    border: 1px solid rgba(13,17,23,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card.full { grid-column: 1/-1; }
+  .stat-card.accent { border-top: 3px solid var(--teal); }
+  .stat-card.gold-a { border-top: 3px solid var(--gold); }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 30px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num.green { color: var(--teal); }
+  .stat-num.amber { color: var(--gold); }
+  .stat-lbl {
+    font-size: 12px;
+    color: var(--ink3);
+    line-height: 1.3;
+  }
+  .stat-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .stat-delta.up {
+    background: #D1FAE5;
+    color: var(--up);
+  }
+  .stat-delta.down {
+    background: #FEE2E2;
+    color: var(--down);
+  }
+  .stat-delta.neutral {
+    background: var(--teal3);
+    color: var(--teal2);
+  }
+
+  /* ── CHART ── */
+  .chart-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px;
+    border: 1px solid rgba(13,17,23,0.06);
+    margin-bottom: 10px;
+  }
+  .chart-card-title {
+    font-size: 12px; font-weight: 500;
+    color: var(--ink2); margin-bottom: 3px;
+  }
+  .chart-card-sub {
+    font-size: 11px; color: var(--ink3); margin-bottom: 14px;
+  }
+
+  /* ── HIGHLIGHT ── */
+  .highlight {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 10px;
+    position: relative; overflow: hidden;
+  }
+  .highlight::before {
+    content: '';
+    position: absolute;
+    right: -40px; bottom: -40px;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.15);
+  }
+  .highlight-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+    position: relative; z-index: 2;
+  }
+  .highlight-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    color: #fff;
+    line-height: 1;
+    position: relative; z-index: 2;
+  }
+  .highlight-num span { color: #9FE1CB; }
+  .highlight-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 8px;
+    line-height: 1.5;
+    position: relative; z-index: 2;
+  }
+
+  /* ── INSIGHT ── */
+  .insight-card {
+    background: var(--teal3);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--teal);
+  }
+  .insight-text {
+    font-size: 14px;
+    color: var(--teal2);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .insight-text strong { font-style: normal; color: var(--ink); }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 24px 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(13,17,23,0.07);
+    margin-top: 10px;
+  }
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 14px; color: var(--ink);
+  }
+  .footer-brand span { color: var(--teal); }
+  .footer-date { font-size: 11px; color: var(--ink3); }
+
+  /* ── DIVIDER ── */
+  .gap { height: 10px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .stat-num { animation: countUp 0.5s ease forwards; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="header-brand">STIL <span>·</span> El Pulso</div>
+      <div class="header-pill">Semana 20</div>
+    </div>
+    <div class="header-period">12 – 19 May 2026</div>
+    <div class="header-headline">
+      La marca llegó a<br>
+      <em>47,752 personas</em><br>
+      esta semana.
+    </div>
+    <div class="trend-badge up">
+      <span class="trend-arrow">↑</span>
+      +60.1% vs semana anterior
+    </div>
+  </div>
+
+  <!-- ALCANCE SEMANAL -->
+  <div class="section">
+    <div class="gap"></div>
+    <div class="section-label">Alcance de la semana</div>
+
+    <div class="highlight">
+      <div class="highlight-label">Personas alcanzadas</div>
+      <div class="highlight-num"><span>47,752</span></div>
+      <div class="highlight-desc">El mejor resultado en lo que va de mayo 2026. El contenido de cultura interna lideró el alcance.</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card accent">
+        <div class="stat-num green">47,752</div>
+        <div class="stat-lbl">Alcance publicaciones</div>
+        <div class="stat-delta up">↑ +60.1%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">30,849</div>
+        <div class="stat-lbl">Alcance de perfil</div>
+        <div class="stat-delta up">↑ activo</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">7</div>
+        <div class="stat-lbl">Días con publicación</div>
+        <div class="stat-delta neutral">constante</div>
+      </div>
+      <div class="stat-card gold-a">
+        <div class="stat-num amber">22,521</div>
+        <div class="stat-lbl">Mejor día · 14 Abr</div>
+        <div class="stat-delta neutral">pico sem.</div>
+      </div>
+    </div>
+
+    <!-- Daily chart -->
+    <div class="chart-card">
+      <div class="chart-card-title">Alcance por día</div>
+      <div class="chart-card-sub">Distribución diaria de personas alcanzadas esta semana</div>
+      <div style="position:relative;height:140px;">
+        <canvas id="chartDaily" role="img" aria-label="Alcance diario de la semana">14 Abr 22521, 15 Abr 6161, 24 Abr 12097, 30 Abr 1069, 05 May 4282, 11 May 936, 14 May 686.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- LINKEDIN -->
+  <div class="section">
+    <div class="gap"></div>
+    <div class="section-label">LinkedIn B2B</div>
+
+    <div class="stats-grid">
+      <div class="stat-card accent full">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="stat-num green">7,029</div>
+            <div class="stat-lbl">Seguidores LinkedIn actuales</div>
+            <div class="stat-delta up">↑ +97 esta semana</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:var(--serif);font-size:18px;color:var(--ink3);">5,892</div>
+            <div style="font-size:11px;color:var(--ink3);">inicio · Abr 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Followers mini chart -->
+    <div class="chart-card">
+      <div class="chart-card-title">Crecimiento de seguidores</div>
+      <div class="chart-card-sub">LinkedIn · últimas 7 semanas</div>
+      <div style="position:relative;height:120px;">
+        <canvas id="chartFollowers" role="img" aria-label="Crecimiento de seguidores LinkedIn">Crecimiento sostenido de 6,932 a 7,029.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACUMULADOS -->
+  <div class="section">
+    <div class="gap"></div>
+    <div class="section-label">Acumulado del período</div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">489K</div>
+        <div class="stat-lbl">Impresiones totales</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2,504</div>
+        <div class="stat-lbl">Reacciones totales</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num green">2,965</div>
+        <div class="stat-lbl">Clicks a enlaces</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">728</div>
+        <div class="stat-lbl">Nuevos seguidores</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHT -->
+  <div class="section">
+    <div class="gap"></div>
+    <div class="insight-card">
+      <div class="insight-text">
+        <strong>Clave de la semana:</strong> el 14 de abril generó 22,521 personas en un solo día — el pico más alto de todo el período de mayo. El contenido de operadores sigue siendo el motor de alcance de STIL.
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="section">
+    <div class="footer">
+      <div>
+        <div class="footer-brand">STIL <span>·</span> Pintaando</div>
+        <div class="footer-date">Semana 12–19 May 2026</div>
+      </div>
+      <div class="footer-date">Datos: Hootsuite</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+Chart.defaults.font.family = "'DM Sans', system-ui, sans-serif";
+Chart.defaults.font.size = 11;
+
+const gridC  = 'rgba(13,17,23,0.06)';
+const textC  = '#9CA3AF';
+
+// Daily chart
+new Chart(document.getElementById('chartDaily'), {
+  type: 'bar',
+  data: {
+    labels: ['14 Abr','15 Abr','24 Abr','30 Abr','05 May','11 May','14 May'],
+    datasets: [{
+      label: 'Alcance',
+      data: [22521,6161,12097,1069,4282,936,686],
+      backgroundColor: [
+        '#1D9E75','#9FE1CB','#5DCAA5','#9FE1CB','#9FE1CB','#9FE1CB','#9FE1CB'
+      ],
+      borderRadius: 5,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#0D1117',
+        titleColor: '#fff',
+        bodyColor: 'rgba(255,255,255,0.6)',
+        padding: 10, cornerRadius: 8,
+        callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString('es-MX') + ' personas' }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: textC } },
+      y: { grid: { color: gridC, drawBorder: false },
+           ticks: { color: textC, callback: v => v>=1000 ? Math.round(v/1000)+'K' : v }}
+    }
+  }
+});
+
+// Followers chart
+new Chart(document.getElementById('chartFollowers'), {
+  type: 'line',
+  data: {
+    labels: ['14 Abr','15 Abr','24 Abr','30 Abr','05 May','11 May','14 May'],
+    datasets: [{
+      label: 'Seguidores',
+      data: [6932,6948,6979,7000,7012,7024,7029],
+      borderColor: '#1D9E75',
+      backgroundColor: 'rgba(29,158,117,0.08)',
+      fill: true, tension: 0.4,
+      pointBackgroundColor: '#1D9E75',
+      pointRadius: 3,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#0D1117',
+        titleColor: '#fff',
+        bodyColor: 'rgba(255,255,255,0.6)',
+        padding: 10, cornerRadius: 8,
+        callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString('es-MX') + ' seguidores' }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: textC } },
+      y: { grid: { color: gridC, drawBorder: false }, min: 6900,
+           ticks: { color: textC, callback: v => v.toLocaleString('es-MX') }}
+    }
+  }
+});
+</script>
+</body>
+</html>
