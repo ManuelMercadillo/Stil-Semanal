@@ -1,491 +1,1659 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STIL · El Pulso Semanal</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --ink:    #0D1117;
-  --ink2:   #3D4451;
-  --ink3:   #6B7280;
-  --bg:     #F7F7F5;
-  --white:  #FFFFFF;
-  --teal:   #1D9E75;
-  --teal2:  #0F766E;
-  --teal3:  #E1F5EE;
-  --teal4:  #9FE1CB;
-  --up:     #059669;
-  --gold:   #B45309;
-  --goldb:  #FEF3C7;
-  --serif:  'DM Serif Display', Georgia, serif;
-  --sans:   'DM Sans', system-ui, sans-serif;
-  --r:      14px;
-}
-html, body { min-height: 100vh; }
-body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--ink);
-  font-size: 15px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STIL · Story Report 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <style>
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0
+    }
 
-/* ── LAYOUT ── */
-.page { max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; }
+    :root {
+        --ink: #0D1117;
+        --ink2: #3D4451;
+        --ink3: #6B7280;
+        --bg: #FAFAF8;
+        --white: #FFFFFF;
+        --teal: #1D9E75;
+        --teal2: #0F766E;
+        --teal3: #E1F5EE;
+        --teal4: #9FE1CB;
+        --blue: #2563EB;
+        --blue2: #1D4ED8;
+        --blue3: #DBEAFE;
+        --blue4: #EFF6FF;
+        --gold: #B45309;
+        --goldb: #FEF3C7;
+        --slate: #64748B;
+        --slate2: #94A3B8;
+        --slate3: #E2E8F0;
+        --up: #059669;
+        --serif: 'DM Serif Display', Georgia, serif;
+        --sans: 'DM Sans', system-ui, sans-serif;
+        --r: 14px;
+    }
 
-/* ── HEADER ── */
-.header {
-  background: var(--ink);
-  border-radius: 0 0 24px 24px;
-  padding: 40px 48px 40px;
-  position: relative; overflow: hidden;
-  margin-bottom: 32px;
-}
-.header::before {
-  content: '';
-  position: absolute; right: -80px; top: -80px;
-  width: 360px; height: 360px; border-radius: 50%;
-  background: rgba(29,158,117,0.14);
-}
-.header::after {
-  content: '';
-  position: absolute; right: 120px; bottom: -60px;
-  width: 200px; height: 200px; border-radius: 50%;
-  background: rgba(29,158,117,0.08);
-}
-.header-inner {
-  position: relative; z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 32px; align-items: end;
-}
-.header-left {}
-.header-top {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 20px;
-}
-.header-brand { font-family: var(--serif); font-size: 20px; color: #fff; }
-.header-brand span { color: var(--teal4); }
-.header-pill {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-  text-transform: uppercase; background: rgba(29,158,117,0.25);
-  color: var(--teal4); padding: 4px 12px; border-radius: 20px;
-  border: 1px solid rgba(159,225,203,0.3);
-}
-.header-period { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
-.header-headline {
-  font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 52px);
-  color: #fff; line-height: 1.1;
-}
-.header-headline em { font-style: italic; color: var(--teal4); }
-.header-trend {
-  display: inline-flex; align-items: center; gap: 8px;
-  margin-top: 16px; background: rgba(5,150,105,0.25);
-  border: 1px solid rgba(110,231,183,0.3);
-  border-radius: 20px; padding: 6px 14px;
-  font-size: 13px; font-weight: 500; color: #6EE7B7;
-}
-.header-right {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  min-width: 280px;
-}
-.header-stat {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--r); padding: 16px 18px;
-}
-.header-stat-num {
-  font-family: var(--serif); font-size: 30px;
-  color: #fff; line-height: 1; margin-bottom: 4px;
-}
-.header-stat-num span { color: var(--teal4); }
-.header-stat-lbl { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.3; }
+    html {
+        scroll-behavior: smooth
+    }
 
-/* ── SECTION LABEL ── */
-.section-label {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--ink3);
-  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
-}
-.section-label::after { content: ''; flex: 1; height: 1px; background: rgba(13,17,23,0.08); }
+    body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased
+    }/* PROGRESS */
+    #prog {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: var(--teal);
+        width: 0%;
+        z-index: 999;
+        transition: width .1s
+    }/* NAV */
+    nav {
+        position: fixed;
+        top: 3px;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 48px;
+        background: rgba(250, 250, 248, .94);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(13, 17, 23, .06)
+    }
 
-/* ── GRID LAYOUTS ── */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 16px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 16px; }
-.grid-chart-insight { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
-.col-span-2 { grid-column: span 2; }
-.col-span-3 { grid-column: span 3; }
+    .nav-brand {
+        font-family: var(--serif);
+        font-size:17px
+    }
 
-/* ── CARDS ── */
-.card {
-  background: var(--white); border-radius: var(--r);
-  border: 1px solid rgba(13,17,23,0.07);
-  padding: 22px 22px 20px;
-  transition: box-shadow 0.2s;
-}
-.card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
-.card.accent-teal { border-top: 3px solid var(--teal); }
-.card.accent-gold  { border-top: 3px solid var(--gold); }
-.card.dark {
-  background: var(--ink); border-color: transparent;
-  position: relative; overflow: hidden;
-}
-.card.dark::before {
-  content: ''; position: absolute;
-  right: -40px; top: -40px; width: 160px; height: 160px;
-  border-radius: 50%; background: rgba(29,158,117,0.15);
-}
-.card.teal-bg { background: var(--teal3); border-color: transparent; border-left: 3px solid var(--teal); }
+    .nav-brand span {
+        color: var(--teal)
+    }
 
-/* ── METRIC ── */
-.metric-num {
-  font-family: var(--serif); font-size: clamp(26px,3vw,36px);
-  color: var(--ink); line-height: 1; margin-bottom: 6px;
-}
-.metric-num.green { color: var(--teal); }
-.metric-num.amber { color: var(--gold); }
-.metric-num.white { color: #fff; }
-.metric-num.white-accent { color: var(--teal4); }
-.metric-lbl { font-size: 12px; color: var(--ink3); line-height: 1.4; }
-.metric-lbl.white { color: rgba(255,255,255,0.5); }
-.delta {
-  display: inline-flex; align-items: center; gap: 3px;
-  margin-top: 8px; font-size: 11px; font-weight: 500;
-  padding: 3px 10px; border-radius: 20px;
-}
-.delta.up   { background: #D1FAE5; color: var(--up); }
-.delta.teal { background: var(--teal3); color: var(--teal2); }
-.delta.amber{ background: var(--goldb); color: var(--gold); }
+    .nav-links {
+        display: flex;
+        gap: 28px
+    }
 
-/* ── CHART ── */
-.chart-title { font-size: 13px; font-weight: 500; color: var(--ink2); margin-bottom: 3px; }
-.chart-sub   { font-size: 12px; color: var(--ink3); margin-bottom: 16px; }
-.chart-legend {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  margin-bottom: 12px; font-size: 12px; color: var(--ink3);
-}
-.chart-legend span { display: flex; align-items: center; gap: 5px; }
-.legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+    .nav-links a {
+        font-size: 13px;
+        color: var(--ink3);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color .2s
+    }
 
-/* ── INSIGHT ── */
-.insight-title { font-size: 14px; font-weight: 500; color: var(--teal2); margin-bottom: 8px; }
-.insight-body  { font-size: 13px; color: var(--ink2); line-height: 1.7; }
-.insight-body strong { color: var(--ink); font-style: normal; }
+    .nav-links a:hover {
+        color: var(--teal)
+    }
 
-/* ── HIGHLIGHT (dark card) ── */
-.highlight-label {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-  text-transform: uppercase; color: rgba(255,255,255,0.4);
-  margin-bottom: 10px; position: relative; z-index: 2;
-}
-.highlight-num {
-  font-family: var(--serif); font-size: clamp(42px,5vw,68px);
-  color: #fff; line-height: 1; position: relative; z-index: 2;
-}
-.highlight-num span { color: var(--teal4); }
-.highlight-desc {
-  font-size: 14px; color: rgba(255,255,255,0.5);
-  margin-top: 10px; line-height: 1.6; position: relative; z-index: 2;
-  max-width: 400px;
-}
+    .nav-pill {
+        font-size: 12px;
+        color: var(--teal2);
+        background: var(--teal3);
+        padding: 4px 12px;
+        border-radius: 20px
+    }/* LAYOUT */
+    main {
+        padding-top: 67px
+    }
 
-/* ── DAILY TABLE ── */
-.daily-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 0; border-bottom: 1px solid rgba(13,17,23,0.06);
-}
-.daily-row:last-child { border-bottom: none; }
-.daily-date { font-size: 13px; color: var(--ink2); min-width: 100px; }
-.daily-bar-wrap { flex: 1; margin: 0 16px; }
-.daily-bar-track { height: 6px; background: var(--teal3); border-radius: 3px; overflow: hidden; }
-.daily-bar-fill  { height: 100%; background: var(--teal); border-radius: 3px; }
-.daily-val { font-family: var(--serif); font-size: 15px; color: var(--ink); min-width: 60px; text-align: right; }
-.daily-val.peak { color: var(--gold); }
+    .w {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 40px
+    }
 
-/* ── FOOTER ── */
-.footer {
-  margin-top: 40px; padding-top: 24px;
-  border-top: 1px solid rgba(13,17,23,0.08);
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-}
-.footer-brand { font-family: var(--serif); font-size: 16px; color: var(--ink); }
-.footer-brand span { color: var(--teal); }
-.footer-meta { font-size: 12px; color: var(--ink3); }
-.footer-pill {
-  font-size: 11px; background: var(--teal3); color: var(--teal2);
-  padding: 5px 14px; border-radius: 20px; font-weight: 500;
-}
+    section {
+        padding: 80px 0
+    }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .header { padding: 28px 28px 32px; border-radius: 0 0 18px 18px; }
-  .header-inner { grid-template-columns: 1fr; gap: 24px; }
-  .header-right { grid-template-columns: repeat(2,1fr); min-width: unset; }
-  .grid-4 { grid-template-columns: repeat(2,1fr); }
-  .grid-3 { grid-template-columns: repeat(2,1fr); }
-  .grid-chart-insight { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .page { padding: 0 16px 48px; }
-  .header { padding: 24px 20px 28px; }
-  .header-right { grid-template-columns: 1fr 1fr; }
-  .grid-2 { grid-template-columns: 1fr 1fr; }
-  .grid-3 { grid-template-columns: 1fr 1fr; }
-  .grid-4 { grid-template-columns: 1fr 1fr; }
-  .col-span-2 { grid-column: span 2; }
-}
-</style>
+    .divider {
+        height: 1px;
+        background: rgba(13, 17, 23, .07);
+        max-width: 960px;
+        margin: 0 auto
+    }/* HERO */
+    .hero {
+        min-height: 88vh;
+        display: flex;
+        align-items: center;
+        background: var(--ink);
+        position: relative;
+        overflow: hidden
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 68% 50%, rgba(29, 158, 117, .18) 0%, transparent 58%), radial-gradient(ellipse at 18% 82%, rgba(15, 118, 110, .10) 0%, transparent 48%)
+    }
+
+    .hero-grid {
+        position: absolute;
+        inset: 0;
+        opacity: .03;
+        background-image: linear-gradient(rgba(255, 255, 255, .5) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .5) 1px, transparent 1px);
+        background-size: 60px 60px
+    }
+
+    .hero-inner {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 48px;
+        align-items: center
+    }
+
+    .eyebrow {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--teal4);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px
+    }
+
+    .eyebrow::before {
+        content: '';
+        width: 32px;
+        height: 1px;
+        background: var(--teal4)
+    }
+
+    .hero h1 {
+        font-family: var(--serif);
+        font-size: clamp(36px, 5.5vw, 68px);
+        line-height: 1.06;
+        color: #fff;
+        margin-bottom: 24px
+    }
+
+    .hero h1 em {
+        font-style: italic;
+        color: var(--teal4)
+    }
+
+    .hero-sub {
+        font-size: 17px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, .52);
+        max-width: 540px;
+        margin-bottom: 36px
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(29, 158, 117, .2);
+        border: 1px solid rgba(159, 225, 203, .3);
+        border-radius: 20px;
+        padding: 8px 18px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--teal4)
+    }
+
+    .hero-badge-arrow {
+        font-size: 18px
+    }/* HERO SCOREBOARD */
+    .scoreboard {
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: 2px;
+        min-width: 300px
+    }
+
+    .sb-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px
+    }
+
+    .sb-cell {
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid rgba(255, 255, 255, .08);
+        padding: 18px 20px;
+        border-radius: 4px;
+        transition: background .2s
+    }
+
+    .sb-cell:hover {
+        background: rgba(255, 255, 255, .1)
+    }
+
+    .sb-cell.tl {
+        border-radius: var(--r) 4px 4px 4px
+    }
+
+    .sb-cell.tr {
+        border-radius: 4px var(--r) 4px 4px
+    }
+
+    .sb-cell.bl {
+        border-radius: 4px 4px 4px var(--r)
+    }
+
+    .sb-cell.br {
+        border-radius: 4px 4px var(--r) 4px
+    }
+
+    .sb-num {
+        font-family: var(--serif);
+        font-size: 28px;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 4px
+    }
+
+    .sb-num .g {
+        color:var(--teal4)
+    }
+
+    .sb-num .b {
+        color: #93C5FD
+    }
+
+    .sb-lbl {
+        font-size: 11px;
+        color: rgba(255, 255, 255, .4);
+        line-height: 1.3
+    }
+
+    .hero-scroll {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, .3);
+        font-size: 11px;
+        letter-spacing: .1em
+    }
+
+    .scroll-line {
+        width: 1px;
+        height: 44px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, .3), transparent);
+        animation: sl 2s ease-in-out infinite
+    }
+
+    @keyframes sl {
+        0%, 100% {
+            opacity:.3
+        }
+
+        50% {
+            opacity: .7
+        }
+    }/* CHAPTER */
+    .ch-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--teal);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px
+    }
+
+    .ch-label::before {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: var(--teal)
+    }
+
+    .ch-title {
+        font-family: var(--serif);
+        font-size: clamp(26px, 3.8vw, 44px);
+        line-height: 1.1;
+        margin-bottom: 16px
+    }
+
+    .ch-lead {
+        font-size: 17px;
+        line-height: 1.85;
+        color: var(--ink2);
+        max-width: 660px;
+        margin-bottom: 40px
+    }
+
+    .pull {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: clamp(18px, 2.4vw, 24px);
+        line-height: 1.45;
+        color: var(--ink);
+        border-left: 3px solid var(--teal);
+        padding: 16px 0 16px 24px;
+        margin: 40px 0;
+        max-width: 680px
+    }/* NETWORK SEPARATOR */
+    .net-sep {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 36px 0 18px
+    }
+
+    .net-sep-line {
+        flex: 1;
+        height: 1px;
+        background: rgba(13, 17, 23, .08)
+    }
+
+    .net-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0
+    }
+
+    .net-icon.fb {
+        background:#1877F2
+    }
+
+    .net-icon.li {
+        background: #0A66C2
+    }
+
+    .net-sep-lbl {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--ink3);
+        white-space: nowrap;
+        padding: 0 2px
+    }/* METRIC CARDS */
+    .grid {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 24px
+    }
+
+    .g2 {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .g3 {
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    .g4 {
+        grid-template-columns: repeat(4, 1fr)
+    }
+
+    .mc {
+        background: var(--white);
+        border-radius: var(--r);
+        border: 1px solid rgba(13, 17, 23, .07);
+        padding: 22px 20px;
+        transition: transform .2s, box-shadow .2s
+    }
+
+    .mc:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, .08)
+    }
+
+    .mc.t {
+        border-top:3px solid var(--teal)
+    }
+
+    .mc.b {
+        border-top:3px solid var(--blue)
+    }
+
+    .mc.go {
+        border-top: 3px solid var(--gold)
+    }
+
+    .mc.dim {
+        background: var(--bg);
+        border-color: rgba(13, 17, 23, .05)
+    }
+
+    .mn {
+        font-family: var(--serif);
+        font-size: clamp(22px, 2.8vw, 32px);
+        line-height: 1;
+        margin-bottom: 7px
+    }
+
+    .mn.g {
+        color:var(--teal)
+    }
+
+    .mn.b {
+        color:var(--blue)
+    }
+
+    .mn.a {
+        color:var(--gold)
+    }
+
+    .mn.s {
+        color: var(--slate)
+    }
+
+    .ml {
+        font-size: 13px;
+        color: var(--ink3);
+        line-height: 1.4
+    }
+
+    .dt {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        margin-top: 8px;
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 20px
+    }
+
+    .dt.up {
+        background: #D1FAE5;
+        color:var(--up)
+    }
+
+    .dt.tl {
+        background: var(--teal3);
+        color: var(--teal2)
+    }
+
+    .dt.bl {
+        background: var(--blue3);
+        color:var(--blue2)
+    }
+
+    .dt.am {
+        background: var(--goldb);
+        color: var(--gold)
+    }
+
+    .dt.sl {
+        background: var(--slate3);
+        color: var(--slate)
+    }/* COMPARATIVA STRIP */
+    .comp {
+        background: var(--ink);
+        border-radius: 20px;
+        padding: 40px 44px;
+        margin: 32px 0;
+        position: relative;
+        overflow: hidden
+    }
+
+    .comp::before {
+        content: '';
+        position: absolute;
+        right: -50px;
+        top: -50px;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: rgba(29, 158, 117, .12)
+    }
+
+    .comp::after {
+        content: '';
+        position: absolute;
+        left: -30px;
+        bottom: -60px;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: rgba(37, 99, 235, .08)
+    }
+
+    .comp-grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 80px 1fr;
+        gap: 24px;
+        align-items: center
+    }
+
+    .comp-side-tag {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        padding: 3px 10px;
+        border-radius: 20px;
+        display: inline-block
+    }
+
+    .comp-side-tag.q1 {
+        background: rgba(255, 255, 255, .08);
+        color: rgba(255, 255, 255, .4)
+    }
+
+    .comp-side-tag.q2 {
+        background: rgba(29, 158, 117, .25);
+        color: var(--teal4)
+    }
+
+    .comp-num {
+        font-family: var(--serif);
+        font-size: clamp(32px, 4.5vw, 56px);
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 8px
+    }
+
+    .comp-num.accent {
+        color: var(--teal4)
+    }
+
+    .comp-sub {
+        font-size: 13px;
+        color: rgba(255, 255, 255, .4);
+        line-height: 1.5
+    }
+
+    .comp-mid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px
+    }
+
+    .comp-pct {
+        font-family: var(--serif);
+        font-size: 26px;
+        color: var(--teal4)
+    }
+
+    .comp-arrow {
+        font-size: 24px;
+        color: var(--teal)
+    }
+
+    .comp-mid-lbl {
+        font-size: 10px;
+        color: rgba(255, 255, 255, .35);
+        text-align: center;
+        letter-spacing: .08em;
+        text-transform: uppercase
+    }/* CHART CARD */
+    .cw {
+        background: var(--white);
+        border-radius: var(--r);
+        border: 1px solid rgba(13, 17, 23, .07);
+        padding: 24px 24px 18px;
+        margin-bottom: 14px
+    }
+
+    .ct {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink2);
+        margin-bottom: 3px
+    }
+
+    .cs {
+        font-size: 12px;
+        color: var(--ink3);
+        margin-bottom: 16px
+    }/* CHART+SIDE LAYOUT */
+    .chart-side {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 14px;
+        margin-bottom: 24px
+    }/* DARK SECTION */
+    .dark {
+        background: var(--ink)
+    }
+
+    .dark .ch-label {
+        color:var(--teal4)
+    }
+
+    .dark .ch-label::before {
+        background: var(--teal4)
+    }
+
+    .dark .ch-title {
+        color:#fff
+    }
+
+    .dark .ch-lead {
+        color: rgba(255, 255, 255, .6)
+    }
+
+    .dark .pull {
+        color: rgba(255, 255, 255, .9);
+        border-color: var(--teal4)
+    }/* TIMELINE */
+    .tl {
+        position: relative;
+        padding-left: 28px;
+        margin: 36px 0
+    }
+
+    .tl::before {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(13, 17, 23, .1)
+    }
+
+    .tl-item {
+        position: relative;
+        margin-bottom: 32px
+    }
+
+    .tl-item:last-child {
+        margin-bottom: 0
+    }
+
+    .tl-dot {
+        position: absolute;
+        left: -24px;
+        top: 4px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--teal);
+        border: 3px solid var(--bg);
+        box-shadow: 0 0 0 1px var(--teal)
+    }
+
+    .tl-dot.gold {
+        background: var(--gold);
+        box-shadow: 0 0 0 1px var(--gold);
+        width: 16px;
+        height: 16px;
+        left: -26px;
+        top: 2px
+    }
+
+    .tl-dot.blue {
+        background: var(--blue);
+        box-shadow: 0 0 0 1px var(--blue)
+    }
+
+    .tl-dot.slate {
+        background: var(--slate);
+        box-shadow: 0 0 0 1px var(--slate)
+    }
+
+    .tl-date {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--ink3);
+        margin-bottom: 3px
+    }
+
+    .tl-event {
+        font-family: var(--serif);
+        font-size: 20px;
+        color: var(--ink);
+        margin-bottom: 5px
+    }
+
+    .tl-detail {
+        font-size: 14px;
+        color: var(--ink2);
+        line-height: 1.65
+    }
+
+    .tl-badge {
+        display: inline-block;
+        margin-top: 7px;
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 20px
+    }
+
+    .tl-badge.g {
+        color: var(--teal2);
+        background:var(--teal3)
+    }
+
+    .tl-badge.b {
+        color: var(--blue2);
+        background:var(--blue3)
+    }
+
+    .tl-badge.sl {
+        color: var(--slate);
+        background: var(--slate3)
+    }/* INSIGHTS */
+    .ins-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin: 28px 0
+    }
+
+    .ins {
+        background: var(--white);
+        border-radius: var(--r);
+        border: 1px solid rgba(13, 17, 23, .07);
+        padding: 22px 20px
+    }
+
+    .ins-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        margin-bottom: 12px
+    }
+
+    .ins-icon.tl {
+        background:var(--teal3)
+    }
+
+    .ins-icon.bl {
+        background: var(--blue3)
+    }
+
+    .ins-title {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 7px
+    }
+
+    .ins-body {
+        font-size: 13px;
+        color: var(--ink2);
+        line-height: 1.7
+    }
+
+    .ins-body strong {
+        color: var(--ink)
+    }/* STEPS */
+    .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 36px 0
+    }
+
+    .step {
+        background: var(--white);
+        border-radius: var(--r);
+        border: 1px solid rgba(13, 17, 23, .07);
+        padding: 20px 22px 20px 18px;
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        transition: border-color .2s
+    }
+
+    .step:hover {
+        border-color: var(--teal4)
+    }
+
+    .step-num {
+        font-family: var(--serif);
+        font-size: 26px;
+        color: var(--teal);
+        line-height: 1;
+        min-width: 24px
+    }
+
+    .step-title {
+        font-size: 15px;
+        font-weight: 500;
+        margin-bottom: 5px
+    }
+
+    .step-desc {
+        font-size: 14px;
+        color: var(--ink2);
+        line-height: 1.65
+    }
+
+    .step-tag {
+        display: inline-block;
+        margin-top: 7px;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--teal2);
+        background: var(--teal3);
+        padding: 3px 10px;
+        border-radius: 20px
+    }/* FOOTER */
+    footer {
+        padding: 40px 40px;
+        border-top: 1px solid rgba(13, 17, 23, .08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 960px;
+        margin: 0 auto
+    }
+
+    .fb-brand {
+        font-family: var(--serif);
+        font-size:17px
+    }
+
+    .fb-brand span {
+        color: var(--teal)
+    }
+
+    .fb-meta {
+        font-size: 12px;
+        color: var(--ink3);
+        margin-top: 3px
+    }
+
+    .fb-pill {
+        font-size: 11px;
+        background: var(--teal3);
+        color: var(--teal2);
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-weight: 500
+    }/* ANIMATIONS */
+    .fi {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity .6s ease, transform .6s ease
+    }
+
+    .fi.v {
+        opacity: 1;
+        transform: translateY(0)
+    }
+
+    .fd1 {
+        transition-delay:.1s
+    }
+
+    .fd2 {
+        transition-delay:.2s
+    }
+
+    .fd3 {
+        transition-delay: .3s
+    }/* RESPONSIVE */
+    @media (max-width: 900px) {
+        nav {
+            padding:12px 20px
+        }
+
+        .nav-links {
+            display: none
+        }
+
+        .w {
+            padding: 0 22px
+        }
+
+        section {
+            padding: 60px 0
+        }
+
+        .hero-inner {
+            grid-template-columns: 1fr;
+            gap: 32px
+        }
+
+        .scoreboard {
+            min-width: unset
+        }
+
+        .g4 {
+            grid-template-columns: 1fr 1fr
+        }
+
+        .g3 {
+            grid-template-columns: 1fr 1fr
+        }
+
+        .chart-side {
+            grid-template-columns: 1fr
+        }
+
+        .comp-grid {
+            grid-template-columns: 1fr;
+            gap: 16px
+        }
+
+        .comp-mid {
+            flex-direction: row;
+            justify-content: center
+        }
+
+        .ins-grid {
+            grid-template-columns: 1fr
+        }
+
+        .comp {
+            padding: 28px 24px
+        }
+    }
+
+    @media (max-width: 600px) {
+        .w {
+            padding: 0 16px
+        }
+
+        .g2 {
+            grid-template-columns: 1fr 1fr
+        }
+
+        .g3 {
+            grid-template-columns: 1fr 1fr
+        }
+
+        .g4 {
+            grid-template-columns: 1fr 1fr
+        }
+    }
+    </style>
 </head>
 <body>
-<div class="page">
+    <div id="prog"></div>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-inner">
-      <div class="header-left">
-        <div class="header-top">
-          <div class="header-brand">STIL <span>·</span> El Pulso</div>
-          <div class="header-pill">Semana 20 · 2026</div>
+    <nav>
+        <div class="nav-brand">
+            STIL 
+            <span>·</span>
+             Story Report 2026
         </div>
-        <div class="header-period">12 – 19 Mayo 2026</div>
-        <div class="header-headline">
-          La marca llegó a<br>
-          <em>47,752 personas</em><br>
-          esta semana.
+        <div class="nav-links">
+            <a href="#q1vsq2">Q1 vs Q2</a>
+            <a href="#facebook">Facebook</a>
+            <a href="#linkedin">LinkedIn</a>
+            <a href="#hitos">Hitos</a>
+            <a href="#siguiente">Próximos pasos</a>
         </div>
-        <div class="header-trend">↑ +60.1% vs semana anterior</div>
-      </div>
-      <div class="header-right">
-        <div class="header-stat">
-          <div class="header-stat-num"><span>47,752</span></div>
-          <div class="header-stat-lbl">Alcance publicaciones</div>
+        <div class="nav-pill">Actualizado 25 May 2026</div>
+    </nav>
+
+    <main>
+
+        <!-- ══ HERO ══ -->
+        <section class="hero" id="inicio">
+            <div class="hero-bg"></div>
+            <div class="hero-grid"></div>
+            <div class="w">
+                <div class="hero-inner">
+                    <div class="hero-left fi">
+                        <div class="eyebrow">Story Report · 2026 · Q1 vs Q2</div>
+                        <h1>
+                            En Q2 2026,
+                            <br>
+                            <em>todo cambió.</em>
+                        </h1>
+                        <p class="hero-sub">El primer trimestre del año fue el punto de partida. El segundo — desde que Pintaando tomó la cuenta el 1 de abril — reescribió los números. Esto es lo que pasó.</p>
+                        <div class="hero-badge">
+                            <span class="hero-badge-arrow">↑</span>
+
+                                      +54.8% de alcance Q1 → Q2 en Facebook
+                                    
+                        </div>
+                    </div>
+                    <div class="scoreboard fi fd1">
+                        <div class="sb-row">
+                            <div class="sb-cell tl">
+                                <div class="sb-num">
+                                    <span class="g">+54.8%</span>
+                                </div>
+                                <div class="sb-lbl">
+                                    Crecimiento alcance
+                                    <br>
+                                    FB Q1 → Q2
+                                </div>
+                            </div>
+                            <div class="sb-cell tr">
+                                <div class="sb-num">
+                                    <span class="g">+73.1%</span>
+                                </div>
+                                <div class="sb-lbl">
+                                    Crecimiento alcance
+                                    <br>
+                                    perfil FB Q1→Q2
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sb-row">
+                            <div class="sb-cell bl">
+                                <div class="sb-num">
+                                    <span class="g">6,411</span>
+                                </div>
+                                <div class="sb-lbl">
+                                    Seguidores
+                                    <br>
+                                    Facebook hoy
+                                </div>
+                            </div>
+                            <div class="sb-cell br">
+                                <div class="sb-num">
+                                    <span class="b">635</span>
+                                </div>
+                                <div class="sb-lbl">
+                                    Seguidores LinkedIn
+                                    <br>
+                                    desde cero
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-scroll">
+                <div class="scroll-line"></div>
+                <span>desplaza</span>
+            </div>
+        </section>
+
+        <!-- ══ CAP 1: Q1 VS Q2 ══ -->
+        <section id="q1vsq2">
+            <div class="w">
+                <div class="ch-label fi">Capítulo 1</div>
+                <h2 class="ch-title fi">El antes y el después</h2>
+                <p class="ch-lead fi">El 1 de abril de 2026 Pintaando tomó la gestión de las redes de STIL. En los 55 días siguientes, el alcance de Facebook creció un 54.8% respecto a todo el Q1, y LinkedIn nació desde cero con 635 seguidores B2B. Aquí está la comparativa completa.</p>
+
+                <!-- Comparativa FB -->
+                <div class="net-sep fi">
+                    <div class="net-sep-line"></div>
+                    <span class="net-icon fb">f</span>
+                    <div class="net-sep-lbl">Facebook · Q1 vs Q2</div>
+                    <div class="net-sep-line"></div>
+                </div>
+
+                <div class="comp fi">
+                    <div class="comp-grid">
+                        <div>
+                            <div class="comp-side-tag q1">Q1 2026 · Ene – Mar · Sin Pintaando</div>
+                            <div class="comp-num">37,082</div>
+                            <div class="comp-sub">personas alcanzadas en 90 días</div>
+                        </div>
+                        <div class="comp-mid">
+                            <div class="comp-pct">+54.8%</div>
+                            <div class="comp-arrow">→</div>
+                            <div class="comp-mid-lbl">variación</div>
+                        </div>
+                        <div>
+                            <div class="comp-side-tag q2">Q2 2026 · Abr – May · Con Pintaando</div>
+                            <div class="comp-num accent">57,408</div>
+                            <div class="comp-sub">personas alcanzadas en 55 días</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráfica mensual 2026 FB -->
+                <div class="cw fi">
+                    <div class="ct">Alcance mensual Facebook · Enero – Mayo 2026</div>
+                    <div class="cs">Barras grises = Q1 (sin Pintaando) · Barras verdes = Q2 (con Pintaando desde 1 Abr)</div>
+                    <div style="position:relative;height:240px">
+                        <canvas id="chartFBMonthly">
+                        </canvas>
+                    </div>
+                </div>
+
+                <div class="grid g4 fi" style="margin-top:14px">
+                    <div class="mc dim">
+                        <div class="mn s">22,625</div>
+                        <div class="ml">Alcance Enero · Q1</div>
+                        <div class="dt sl">sin Pintaando</div>
+                    </div>
+                    <div class="mc dim fi fd1">
+                        <div class="mn s">12,627</div>
+                        <div class="ml">Alcance Febrero · Q1</div>
+                        <div class="dt sl">sin Pintaando</div>
+                    </div>
+                    <div class="mc dim fi fd2">
+                        <div class="mn s">1,830</div>
+                        <div class="ml">Alcance Marzo · Q1</div>
+                        <div class="dt sl">sin Pintaando</div>
+                    </div>
+                    <div class="mc t fi fd3">
+                        <div class="mn g">42,012</div>
+                        <div class="ml">Alcance Abril · Q2</div>
+                        <div class="dt up">↑ mejor mes del año</div>
+                    </div>
+                </div>
+
+                <!-- Comparativa LI -->
+                <div class="net-sep fi">
+                    <div class="net-sep-line"></div>
+                    <span class="net-icon li">in</span>
+                    <div class="net-sep-lbl">LinkedIn · Q1 vs Q2</div>
+                    <div class="net-sep-line"></div>
+                </div>
+
+                <div class="grid g3 fi">
+                    <div class="mc dim">
+                        <div class="mn s">0</div>
+                        <div class="ml">Seguidores LinkedIn en Q1</div>
+                        <div class="dt sl">canal inexistente</div>
+                    </div>
+                    <div class="mc b fi fd1">
+                        <div class="mn b">635</div>
+                        <div class="ml">Seguidores LinkedIn en Q2</div>
+                        <div class="dt bl">↑ construidos desde cero</div>
+                    </div>
+                    <div class="mc fi fd2">
+                        <div class="mn b">1,271</div>
+                        <div class="ml">Clicks a enlaces generados en Q2</div>
+                        <div class="dt bl">tráfico B2B real</div>
+                    </div>
+                </div>
+
+                <blockquote class="pull fi">"En Q1 LinkedIn no existía para STIL. En Q2, con 55 días de gestión, ya tiene 635 seguidores B2B y genera tráfico hacia el negocio."</blockquote>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ══ CAP 2: FACEBOOK ══ -->
+        <section id="facebook">
+            <div class="w">
+                <div class="ch-label fi">Capítulo 2</div>
+                <h2 class="ch-title fi">Facebook en 2026</h2>
+                <p class="ch-lead fi">La red principal de STIL. 6,411 seguidores, 94,490 personas alcanzadas en el año, y el mejor mes de 2026 ocurrió en Q2. Así está el canal hoy.</p>
+
+                <div class="grid g4 fi">
+                    <div class="mc t">
+                        <div class="mn g">94,490</div>
+                        <div class="ml">Alcance total 2026</div>
+                        <div class="dt up">↑ en crecimiento</div>
+                    </div>
+                    <div class="mc fi fd1">
+                        <div class="mn">6,411</div>
+                        <div class="ml">Seguidores actuales</div>
+                        <div class="dt tl">+268 en 2026</div>
+                    </div>
+                    <div class="mc go fi fd2">
+                        <div class="mn a">42,012</div>
+                        <div class="ml">Mejor mes · Abril 2026</div>
+                        <div class="dt am">récord del año</div>
+                    </div>
+                    <div class="mc fi fd3">
+                        <div class="mn">22,540</div>
+                        <div class="ml">Mejor día · 14 Abr 2026</div>
+                        <div class="dt tl">pico del año</div>
+                    </div>
+                </div>
+
+                <!-- Chart + side -->
+                <div class="chart-side fi">
+                    <div class="cw" style="margin-bottom:0">
+                        <div class="ct">Alcance de publicaciones vs. alcance de perfil · 2026</div>
+                        <div class="cs">Comparativa mensual entre lo que generan los posts y la visibilidad del perfil</div>
+                        <div style="position:relative;height:230px">
+                            <canvas id="chartFBDouble">
+                            </canvas>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:14px">
+                        <div class="mc t">
+                            <div class="mn g">+127</div>
+                            <div class="ml">Nuevos seguidores en Q2</div>
+                        </div>
+                        <div class="mc">
+                            <div class="mn">+141</div>
+                            <div class="ml">Nuevos seguidores en Q1</div>
+                            <div class="dt sl">para contexto</div>
+                        </div>
+                        <div class="mc go">
+                            <div class="mn a">1,698</div>
+                            <div class="ml">Clicks a enlaces generados</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ins-grid fi">
+                    <div class="ins">
+                        <div class="ins-icon tl">📈</div>
+                        <div class="ins-title">Abril fue el mes que definió Q2</div>
+                        <div class="ins-body">
+                            Con 
+                            <strong>42,012 de alcance</strong>
+                            , abril 2026 superó a todos los meses de Q1 sumados casi por un factor de 1.1x. El 14 de abril generó 
+                            <strong>22,540 personas en un solo día</strong>
+                            .
+                        </div>
+                    </div>
+                    <div class="ins">
+                        <div class="ins-icon tl">👷</div>
+                        <div class="ins-title">El contenido que dispara el alcance</div>
+                        <div class="ins-body">
+                            Los 3 mejores días del año son posts de 
+                            <strong>cultura interna y operadores</strong>
+                            . Cuando STIL muestra a sus personas reales, el algoritmo amplifica. Es el patrón más claro de los datos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ══ CAP 3: LINKEDIN ══ -->
+        <section id="linkedin">
+            <div class="w">
+                <div class="ch-label fi">Capítulo 3</div>
+                <h2 class="ch-title fi">LinkedIn: el canal que nació en Q2</h2>
+                <p class="ch-lead fi">En Q1 LinkedIn no existía para STIL. El 1 de abril de 2026 activamos el canal. En menos de 60 días: 635 seguidores B2B, 7,915 impresiones y 1,271 clicks directos hacia el negocio.</p>
+
+                <div class="grid g4 fi">
+                    <div class="mc b">
+                        <div class="mn b">635</div>
+                        <div class="ml">Seguidores B2B construidos</div>
+                        <div class="dt bl">desde cero en &lt;60 días</div>
+                    </div>
+                    <div class="mc fi fd1">
+                        <div class="mn">7,915</div>
+                        <div class="ml">Impresiones de publicaciones</div>
+                    </div>
+                    <div class="mc b fi fd2">
+                        <div class="mn b">1,271</div>
+                        <div class="ml">Clicks a enlaces generados</div>
+                        <div class="dt bl">tráfico hacia ventas</div>
+                    </div>
+                    <div class="mc fi fd3">
+                        <div class="mn">230</div>
+                        <div class="ml">Reacciones en Q2</div>
+                    </div>
+                </div>
+
+                <!-- LI chart + insight -->
+                <div class="chart-side fi">
+                    <div class="cw" style="margin-bottom:0">
+                        <div class="ct">Crecimiento de seguidores LinkedIn · Abr – May 2026</div>
+                        <div class="cs">El canal arrancó el 1 de abril. De 0 a 635 seguidores en las primeras semanas.</div>
+                        <div style="position:relative;height:200px">
+                            <canvas id="chartLIFollowers">
+                            </canvas>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:14px">
+                        <div class="mc b">
+                            <div class="mn b">635</div>
+                            <div class="ml">Seguidores hoy</div>
+                        </div>
+                        <div class="mc dim">
+                            <div class="mn s">0</div>
+                            <div class="ml">Seguidores en Q1</div>
+                            <div class="dt sl">canal no activo</div>
+                        </div>
+                        <div class="mc">
+                            <div class="mn">2,513</div>
+                            <div class="ml">Alcance de perfil LI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ins-grid fi">
+                    <div class="ins">
+                        <div class="ins-icon bl">💼</div>
+                        <div class="ins-title">¿Quién sigue a STIL en LinkedIn?</div>
+                        <div class="ins-body">
+                            LinkedIn es la red donde operan los gerentes de logística, directores de supply chain y equipos de procurement de empresas como Audi y Toyota. 
+                            <strong>Cada seguidor es un tomador de decisiones</strong>
+                            , no un usuario casual.
+                        </div>
+                    </div>
+                    <div class="ins">
+                        <div class="ins-icon bl">🎯</div>
+                        <div class="ins-title">1,271 clicks en menos de 60 días</div>
+                        <div class="ins-body">
+                            Sin ads, sin boost. Las publicaciones de LinkedIn ya están generando tráfico directo hacia el negocio de STIL. 
+                            <strong>Cada click es un prospecto que tomó una acción activa</strong>
+                             después de ver el contenido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ══ CAP 4: HITOS ══ -->
+        <section class="dark" id="hitos">
+            <div class="w">
+                <div class="ch-label fi">Capítulo 4</div>
+                <h2 class="ch-title fi">Los momentos que definieron 2026</h2>
+                <p class="ch-lead fi">En cinco meses de 2026 hubo fechas que marcaron el año. Los datos no mienten sobre cuándo y por qué el contenido conectó.</p>
+
+                <div class="tl fi">
+                    <div class="tl-item">
+                        <div class="tl-dot slate"></div>
+                        <div class="tl-date">Enero 2026 · Q1</div>
+                        <div class="tl-event">El mejor mes del Q1</div>
+                        <div class="tl-detail">Con 22,625 de alcance, enero fue el mes más activo antes de que Pintaando tomara la cuenta. El 23 de enero generó 9,214 personas en un día — el mejor resultado del Q1.</div>
+                        <span class="tl-badge sl">22,625 alcance · Q1</span>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot slate"></div>
+                        <div class="tl-date">Marzo 2026 · Q1</div>
+                        <div class="tl-event">El punto más bajo</div>
+                        <div class="tl-detail">Solo 1,830 de alcance en marzo. El canal necesitaba un cambio de dirección. Este mes fue la señal más clara de que algo tenía que cambiar en la gestión.</div>
+                        <span class="tl-badge sl">1,830 alcance · mínimo</span>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot gold"></div>
+                        <div class="tl-date">1 Abril 2026 · Pintaando toma la cuenta</div>
+                        <div class="tl-event">El punto de quiebre</div>
+                        <div class="tl-detail">Pintaando asume la gestión. Nuevo calendario editorial, nueva estrategia de contenido, foco en cultura interna y arranque del canal LinkedIn.</div>
+                        <span class="tl-badge g">Inicio Q2 · Pintaando</span>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot gold"></div>
+                        <div class="tl-date">14 Abril 2026</div>
+                        <div class="tl-event">El mejor día del año</div>
+                        <div class="tl-detail">22,540 personas alcanzadas en un solo día. Post de cultura interna y operadores STIL. El resultado más alto de 2026 en solo 14 días de gestión de Pintaando.</div>
+                        <span class="tl-badge g">22,540 alcance · récord 2026</span>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot blue"></div>
+                        <div class="tl-date">Abril – Mayo 2026</div>
+                        <div class="tl-event">LinkedIn despierta</div>
+                        <div class="tl-detail">El canal de LinkedIn arranca con 635 seguidores B2B y 1,271 clicks en menos de 60 días. STIL opera simultáneamente en dos mercados: talento (Facebook) y comercial (LinkedIn).</div>
+                        <span class="tl-badge b">635 seguidores LI · primer mes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ══ CAP 5: PRÓXIMOS PASOS ══ -->
+        <section id="siguiente">
+            <div class="w">
+                <div class="ch-label fi">Capítulo 5</div>
+                <h2 class="ch-title fi">Los tres movimientos de Q3 2026</h2>
+                <p class="ch-lead fi">Los datos de Q2 muestran qué funciona. Estos son los tres movimientos para construir sobre ese momentum en el siguiente trimestre.</p>
+
+                <div class="steps fi">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div>
+                            <div class="step-title">Mantener el nivel de abril todos los meses de Q3</div>
+                            <div class="step-desc">Abril alcanzó 42,012 personas — el récord del año. Ese resultado fue producto de mayor frecuencia de publicación y contenido de cultura interna. Esa combinación puede sostenerse. El objetivo para Q3: no bajar de 35,000 de alcance mensual en Facebook.</div>
+                            <span class="step-tag">Facebook · Impacto inmediato</span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div>
+                            <div class="step-title">Convertir LinkedIn en generador de leads con el Premio Ryder</div>
+                            <div class="step-desc">Con 635 seguidores B2B y 1,271 clicks en el primer mes y medio, LinkedIn ya funciona. El siguiente paso es activar el Premio Ryder como credencial de apertura — artículos firmados por directivos de STIL dirigidos a gerentes de supply chain y procurement.</div>
+                            <span class="step-tag">LinkedIn · Alto valor comercial</span>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">03</div>
+                        <div>
+                            <div class="step-title">Meta: 1,000 seguidores en LinkedIn antes de fin de Q3</div>
+                            <div class="step-desc">Al ritmo de crecimiento actual, llegar a 1,000 seguidores en LinkedIn en Q3 2026 es alcanzable. En el sector logística México, eso posiciona a STIL como la marca de transporte con mayor presencia B2B visible en la plataforma.</div>
+                            <span class="step-tag">LinkedIn · Meta Q3 2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <blockquote class="pull fi">"Q2 demostró que la estrategia correcta mueve los números de inmediato. El récord del año se logró en los primeros 14 días de gestión de Pintaando. Q3 empieza desde ese piso."</blockquote>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div>
+            <div class="fb-brand">
+                STIL 
+                <span>·</span>
+                 Story Report 2026
+            </div>
+            <div class="fb-meta">Q1 vs Q2 · Facebook & LinkedIn · Gestión Pintaando · Actualizado 25 May 2026</div>
         </div>
-        <div class="header-stat">
-          <div class="header-stat-num">30,849</div>
-          <div class="header-stat-lbl">Alcance de perfil</div>
-        </div>
-        <div class="header-stat">
-          <div class="header-stat-num">7,029</div>
-          <div class="header-stat-lbl">Seguidores LinkedIn</div>
-        </div>
-        <div class="header-stat">
-          <div class="header-stat-num"><span>+97</span></div>
-          <div class="header-stat-lbl">Nuevos seguidores LI</div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="fb-pill">Datos: Hootsuite Export</div>
+    </footer>
 
-  <!-- KPIs SEMANA -->
-  <div class="section-label">Métricas de la semana</div>
-  <div class="grid-4" style="margin-bottom:24px;">
-    <div class="card accent-teal">
-      <div class="metric-num green">47,752</div>
-      <div class="metric-lbl">Alcance de publicaciones</div>
-      <div class="delta up">↑ +60.1% vs sem. ant.</div>
-    </div>
-    <div class="card">
-      <div class="metric-num">30,849</div>
-      <div class="metric-lbl">Alcance de perfil</div>
-      <div class="delta teal">activo</div>
-    </div>
-    <div class="card">
-      <div class="metric-num">7</div>
-      <div class="metric-lbl">Días con publicación</div>
-      <div class="delta teal">constante</div>
-    </div>
-    <div class="card accent-gold">
-      <div class="metric-num amber">22,521</div>
-      <div class="metric-lbl">Mejor día · 14 Abr</div>
-      <div class="delta amber">pico semana</div>
-    </div>
-  </div>
+    <script>
+    window.addEventListener('scroll', () => {
+        const h = document.documentElement;
+        document.getElementById('prog').style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    });
+    const obs = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting)
+            e.target.classList.add('v')
+    }), {
+        threshold: .1
+    });
+    document.querySelectorAll('.fi').forEach(el => obs.observe(el));
 
-  <!-- GRÁFICA DIARIA + INSIGHT -->
-  <div class="grid-chart-insight" style="margin-bottom:24px;">
-    <div class="card">
-      <div class="chart-title">Alcance por día · esta semana</div>
-      <div class="chart-sub">Distribución diaria de personas alcanzadas</div>
-      <div style="position:relative;height:220px;">
-        <canvas id="chartDaily" role="img" aria-label="Alcance diario de la semana">14 Abr 22521, 15 Abr 6161, 24 Abr 12097, 30 Abr 1069, 05 May 4282, 11 May 936, 14 May 686.</canvas>
-      </div>
-    </div>
-    <div class="card teal-bg">
-      <div class="insight-title">Clave de la semana</div>
-      <div class="insight-body">
-        El <strong>14 de abril generó 22,521 personas</strong> en un solo día — el pico más alto del período de mayo.<br><br>
-        El contenido de <strong>cultura interna y operadores</strong> sigue siendo el motor de alcance de STIL. Cuando la marca muestra a sus personas, la audiencia responde.<br><br>
-        <strong>Recomendación:</strong> publicar al menos 2 posts de operadores por semana para mantener este nivel de alcance.
-      </div>
-    </div>
-  </div>
+    Chart.defaults.font.family = "'DM Sans',system-ui,sans-serif";
+    Chart.defaults.font.size = 12;
+    const gc = 'rgba(13,17,23,.06)',
+        tc = '#9CA3AF';
+    const tip = {
+        backgroundColor: '#0D1117',
+        titleColor: '#fff',
+        bodyColor: 'rgba(255,255,255,.6)',
+        padding: 12,
+        cornerRadius: 8
+    };
 
-  <!-- HIGHLIGHT + DESGLOSE DIARIO -->
-  <div class="grid-2" style="margin-bottom:24px;">
-    <div class="card dark">
-      <div class="highlight-label">Alcance total de la semana</div>
-      <div class="highlight-num"><span>47,752</span></div>
-      <div class="highlight-desc">El mejor resultado en lo que va de mayo 2026. 100% orgánico — sin inversión en pauta publicitaria.</div>
-    </div>
-    <div class="card">
-      <div class="chart-title">Desglose diario</div>
-      <div class="chart-sub">Alcance por día · semana 20</div>
-      <div class="daily-row">
-        <div class="daily-date">Mar 14 Abr</div>
-        <div class="daily-bar-wrap"><div class="daily-bar-track"><div class="daily-bar-fill" style="width:100%"></div></div></div>
-        <div class="daily-val peak">22,521</div>
-      </div>
-      <div class="daily-row">
-        <div class="daily-date">Vie 24 Abr</div>
-        <div class="daily-bar-wrap"><div class="daily-bar-track"><div class="daily-bar-fill" style="width:54%"></div></div></div>
-        <div class="daily-val">12,097</div>
-      </div>
-      <div class="daily-row">
-        <div class="daily-date">Mié 15 Abr</div>
-        <div class="daily-bar-wrap"><div class="daily-bar-track"><div class="daily-bar-fill" style="width:27%"></div></div></div>
-        <div class="daily-val">6,161</div>
-      </div>
-      <div class="daily-row">
-        <div class="daily-date">Lun 05 May</div>
-        <div class="daily-bar-wrap"><div class="daily-bar-track"><div class="daily-bar-fill" style="width:19%"></div></div></div>
-        <div class="daily-val">4,282</div>
-      </div>
-      <div class="daily-row">
-        <div class="daily-date">Jue 30 Abr</div>
-        <div class="daily-bar-wrap"><div class="daily-bar-track"><div class="daily-bar-fill" style="width:5%"></div></div></div>
-        <div class="daily-val">1,069</div>
-      </div>
-    </div>
-  </div>
+    // 1. FB Monthly 2026 — grey Q1, green Q2
+    new Chart(document.getElementById('chartFBMonthly'), {
+        type: 'bar',
+        data: {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+            datasets: [{
+                label: 'Alcance',
+                data: [22625, 12627, 1830, 42012, 15396],
+                backgroundColor: ['#CBD5E1', '#CBD5E1', '#CBD5E1', '#1D9E75', '#5DCAA5'],
+                borderRadius: 6,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    ...tip,
+                    callbacks: {
+                        label: ctx => ' ' + ctx.parsed.y.toLocaleString('es-MX') + ' personas'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: tc
+                    }
+                },
+                y: {
+                    grid: {
+                        color: gc,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        color: tc,
+                        callback: v => v >= 1000 ? Math.round(v / 1000) + 'K' : v
+                    }
+                }
+            }
+        }
+    });
 
-  <!-- LINKEDIN + ACUMULADOS -->
-  <div class="section-label">LinkedIn B2B · comunidad</div>
-  <div class="grid-3" style="margin-bottom:24px;">
-    <div class="card accent-teal col-span-2">
-      <div class="chart-title">Crecimiento de seguidores LinkedIn · últimos meses</div>
-      <div class="chart-sub">De 5,892 en abril 2025 a 7,029 hoy — +1,137 seguidores B2B en 13 meses</div>
-      <div style="position:relative;height:180px;">
-        <canvas id="chartFollowers" role="img" aria-label="Crecimiento seguidores LinkedIn">Crecimiento sostenido de 5892 a 7029 seguidores.</canvas>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px;">
-      <div class="card">
-        <div class="metric-num green">7,029</div>
-        <div class="metric-lbl">Seguidores LinkedIn actuales</div>
-        <div class="delta up">↑ +97 esta semana</div>
-      </div>
-      <div class="card">
-        <div class="metric-num">+1,137</div>
-        <div class="metric-lbl">Crecimiento total en el período</div>
-        <div class="delta teal">13 meses</div>
-      </div>
-    </div>
-  </div>
+    // 2. FB Double (reach posts + reach profile)
+    new Chart(document.getElementById('chartFBDouble'), {
+        type: 'bar',
+        data: {
+            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],
+            datasets: [
+            {
+                label: 'Alcance publicaciones',
+                data: [22625, 12627, 1830, 42012, 15396],
+                backgroundColor: '#1D9E75',
+                borderRadius: 4,
+                borderSkipped: false
+            },
+            {
+                label: 'Alcance perfil',
+                data: [19166, 10814, 2159, 41273, 14360],
+                backgroundColor: '#9FE1CB',
+                borderRadius: 4,
+                borderSkipped: false
+            },
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: tc,
+                        boxWidth: 10,
+                        padding: 16
+                    }
+                },
+                tooltip: {
+                    ...tip,
+                    callbacks: {
+                        label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString('es-MX')
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: tc
+                    },
+                    stacked: false
+                },
+                y: {
+                    grid: {
+                        color: gc,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        color: tc,
+                        callback: v => v >= 1000 ? Math.round(v / 1000) + 'K' : v
+                    }
+                }
+            }
+        }
+    });
 
-  <!-- ACUMULADOS PERÍODO -->
-  <div class="section-label">Acumulado del período · May 2025 – May 2026</div>
-  <div class="grid-4" style="margin-bottom:24px;">
-    <div class="card">
-      <div class="metric-num">489K</div>
-      <div class="metric-lbl">Impresiones totales</div>
-    </div>
-    <div class="card">
-      <div class="metric-num green">293K</div>
-      <div class="metric-lbl">Personas alcanzadas</div>
-    </div>
-    <div class="card">
-      <div class="metric-num">2,504</div>
-      <div class="metric-lbl">Reacciones totales</div>
-    </div>
-    <div class="card accent-gold">
-      <div class="metric-num amber">2,965</div>
-      <div class="metric-lbl">Clicks a enlaces</div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div>
-      <div class="footer-brand">STIL <span>·</span> Pintaando</div>
-      <div class="footer-meta" style="margin-top:4px;">Semana 20 · 12–19 Mayo 2026 · Facebook & LinkedIn</div>
-    </div>
-    <div class="footer-pill">Datos: Hootsuite Export</div>
-  </div>
-
-</div>
-
-<script>
-Chart.defaults.font.family = "'DM Sans', system-ui, sans-serif";
-Chart.defaults.font.size = 12;
-
-const gc = 'rgba(13,17,23,0.06)';
-const tc = '#9CA3AF';
-
-const tipOpts = {
-  backgroundColor: '#0D1117',
-  titleColor: '#fff',
-  bodyColor: 'rgba(255,255,255,0.6)',
-  padding: 12, cornerRadius: 8, borderWidth: 0,
-};
-
-new Chart(document.getElementById('chartDaily'), {
-  type: 'bar',
-  data: {
-    labels: ['14 Abr','15 Abr','24 Abr','30 Abr','05 May','11 May','14 May'],
-    datasets: [{
-      label: 'Alcance',
-      data: [22521,6161,12097,1069,4282,936,686],
-      backgroundColor: ['#B45309','#9FE1CB','#5DCAA5','#9FE1CB','#9FE1CB','#C7E8DA','#C7E8DA'],
-      borderRadius: 6, borderSkipped: false,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { ...tipOpts, callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString('es-MX') + ' personas' }}
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: tc } },
-      y: { grid: { color: gc, drawBorder: false },
-           ticks: { color: tc, callback: v => v>=1000 ? Math.round(v/1000)+'K' : v }}
-    }
-  }
-});
-
-new Chart(document.getElementById('chartFollowers'), {
-  type: 'line',
-  data: {
-    labels: ["Abr'25","May'25","Jun'25","Jul'25","Ago'25","Sep'25","Oct'25","Nov'25","Dic'25","Ene'26","Feb'26","Mar'26","Abr'26","May'26"],
-    datasets: [{
-      label: 'Seguidores LinkedIn',
-      data: [5901,5919,5934,5945,5970,6004,6019,6069,6153,6247,6288,6293,7000,7029],
-      borderColor: '#1D9E75', backgroundColor: 'rgba(29,158,117,0.07)',
-      fill: true, tension: 0.4,
-      pointBackgroundColor: '#1D9E75', pointRadius: 3, pointHoverRadius: 6,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { ...tipOpts, callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString('es-MX') + ' seguidores' }}
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: tc, maxTicksLimit: 7 } },
-      y: { grid: { color: gc, drawBorder: false }, min: 5800,
-           ticks: { color: tc, callback: v => v.toLocaleString('es-MX') }}
-    }
-  }
-});
-</script>
+    // 3. LI Followers growth
+    new Chart(document.getElementById('chartLIFollowers'), {
+        type: 'line',
+        data: {
+            labels: ['01 Abr', '07 Abr', '14 Abr', '21 Abr', '28 Abr', '05 May', '12 May', '19 May', '25 May'],
+            datasets: [{
+                label: 'Seguidores LinkedIn',
+                data: [620, 623, 626, 628, 630, 631, 633, 634, 635],
+                borderColor: '#2563EB',
+                backgroundColor: 'rgba(37,99,235,.08)',
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#2563EB',
+                pointRadius: 4,
+                pointHoverRadius: 6,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    ...tip,
+                    callbacks: {
+                        label: ctx => ' ' + ctx.parsed.y.toLocaleString('es-MX') + ' seguidores'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: tc
+                    }
+                },
+                y: {
+                    grid: {
+                        color: gc,
+                        drawBorder: false
+                    },
+                    min: 610,
+                    ticks: {
+                        color: tc,
+                        callback: v => v.toLocaleString('es-MX')
+                    }
+                }
+            }
+        }
+    });
+    </script>
 </body>
 </html>
