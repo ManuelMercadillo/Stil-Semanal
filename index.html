@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STIL · El Pulso Semanal</title>
+    <title>STIL · El Pulso Semanal · Interno</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -18,7 +18,7 @@
         --ink: #0D1117;
         --ink2: #3D4451;
         --ink3: #6B7280;
-        --bg: #F7F7F5;
+        --bg: #F4F4F2;
         --white: #FFFFFF;
         --teal: #1D9E75;
         --teal2: #0F766E;
@@ -29,15 +29,16 @@
         --blue3: #DBEAFE;
         --gold: #B45309;
         --goldb: #FEF3C7;
+        --red: #DC2626;
+        --redb: #FEE2E2;
+        --red2: #991B1B;
+        --green: #059669;
+        --greenb: #D1FAE5;
         --slate: #64748B;
-        --slate2: #94A3B8;
         --slate3: #E2E8F0;
-        --down: #DC2626;
-        --downb: #FEE2E2;
-        --up: #059669;
         --serif: 'DM Serif Display', Georgia, serif;
         --sans: 'DM Sans', system-ui, sans-serif;
-        --r: 14px;
+        --r: 12px;
     }
 
     html, body {
@@ -51,41 +52,25 @@
         font-size: 15px;
         line-height: 1.6;
         -webkit-font-smoothing: antialiased
-    }/* LAYOUT */
-    .page {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 28px 60px
-    }/* HEADER */
+    }/* HEADER INTERNO */
     .header {
         background: var(--ink);
-        border-radius: 0 0 24px 24px;
-        padding: 40px 48px;
+        border-radius: 0 0 20px 20px;
+        padding: 32px 40px;
+        margin-bottom: 24px;
         position: relative;
-        overflow: hidden;
-        margin-bottom: 32px
+        overflow: hidden
     }
 
     .header::before {
         content: '';
         position: absolute;
-        right: -60px;
-        top: -60px;
-        width: 300px;
-        height: 300px;
+        right: -40px;
+        top: -40px;
+        width: 220px;
+        height: 220px;
         border-radius: 50%;
-        background: rgba(29, 158, 117, .13)
-    }
-
-    .header::after {
-        content: '';
-        position: absolute;
-        left: -40px;
-        bottom: -60px;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: rgba(37, 99, 235, .08)
+        background: rgba(29, 158, 117, .1)
     }
 
     .header-inner {
@@ -93,21 +78,24 @@
         z-index: 2;
         display: grid;
         grid-template-columns: 1fr auto;
-        gap: 40px;
+        gap: 32px;
         align-items: center
     }
 
-    .header-meta {
+    .header-left {
+    }
+
+    .header-top {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 18px;
+        gap: 10px;
+        margin-bottom: 14px;
         flex-wrap: wrap
     }
 
     .header-brand {
         font-family: var(--serif);
-        font-size: 20px;
+        font-size: 18px;
         color: #fff
     }
 
@@ -115,111 +103,107 @@
         color: var(--teal4)
     }
 
-    .header-pill {
+    .header-internal {
         font-size: 11px;
         font-weight: 500;
         letter-spacing: .1em;
         text-transform: uppercase;
-        background: rgba(29, 158, 117, .25);
-        color: var(--teal4);
-        padding: 4px 12px;
+        background: rgba(220, 38, 38, .25);
+        color: #FCA5A5;
+        padding: 3px 10px;
         border-radius: 20px;
-        border: 1px solid rgba(159, 225, 203, .3)
+        border: 1px solid rgba(252, 165, 165, .3)
     }
 
-    .header-date {
-        font-size: 12px;
-        color: rgba(255, 255, 255, .35)
+    .header-week {
+        font-size: 11px;
+        color: rgba(255, 255, 255, .35);
+        padding: 3px 10px;
+        background: rgba(255, 255, 255, .07);
+        border-radius: 20px
     }
 
     .header-headline {
         font-family: var(--serif);
-        font-size: clamp(26px, 4vw, 50px);
+        font-size: clamp(22px, 3.5vw, 36px);
         color: #fff;
-        line-height: 1.1;
-        margin-bottom: 16px
+        line-height: 1.15;
+        margin-bottom: 10px
     }
 
-    .header-headline em {
-        font-style: italic;
-        color: var(--teal4)
+    .header-headline .g {
+        color:var(--teal4)
     }
 
-    .header-headline.neg em {
+    .header-headline .r {
         color: #FCA5A5
     }
 
     .header-sub {
-        font-size: 14px;
-        color: rgba(255, 255, 255, .45);
+        font-size: 13px;
+        color: rgba(255, 255, 255, .4);
         line-height: 1.6;
-        max-width: 480px
-    }/* HEADER SCOREBOARD */
+        max-width: 500px
+    }/* HEADER SCORES */
     .hscores {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 8px;
         min-width: 260px
     }
 
-    .hscore {
+    .hs {
         background: rgba(255, 255, 255, .07);
         border: 1px solid rgba(255, 255, 255, .1);
         border-radius: var(--r);
-        padding: 16px 18px
+        padding: 14px 16px
     }
 
-    .hscore-num {
+    .hs-num {
         font-family: var(--serif);
-        font-size: 26px;
+        font-size: 24px;
         color: #fff;
         line-height: 1;
-        margin-bottom: 4px
+        margin-bottom: 3px
     }
 
-    .hscore-num .g {
+    .hs-num .g {
         color:var(--teal4)
     }
 
-    .hscore-num .b {
-        color:#93C5FD
+    .hs-num .r {
+        color:#FCA5A5
     }
 
-    .hscore-num .r {
-        color: #FCA5A5
+    .hs-num .b {
+        color: #93C5FD
     }
 
-    .hscore-lbl {
+    .hs-lbl {
         font-size: 11px;
         color: rgba(255, 255, 255, .4);
         line-height: 1.3
-    }/* NET SECTION HEADERS */
-    .net-header {
+    }/* PAGE */
+    .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px 60px
+    }/* SECTION LABEL */
+    .sec-label {
         display: flex;
         align-items: center;
-        gap: 14px;
-        padding: 0 0 16px;
-        margin: 0 0 4px;
-        border-bottom: 2px solid;
-        position: relative
-    }
-
-    .net-header.fb {
-        border-color: #1877F2
-    }
-
-    .net-header.li {
-        border-color: var(--blue)
+        gap: 10px;
+        margin-bottom: 16px
     }
 
     .net-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 7px;
+        width: 26px;
+        height: 26px;
+        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 14px;
+        font-size: 11px;
         font-weight: 700;
         color: #fff;
         flex-shrink: 0
@@ -233,50 +217,124 @@
         background: #0A66C2
     }
 
-    .net-header-title {
-        font-family: var(--serif);
-        font-size: 22px;
+    .sec-title {
+        font-size: 14px;
+        font-weight: 500;
         color: var(--ink)
     }
 
-    .net-header-sub {
-        font-size: 12px;
-        color: var(--ink3);
-        margin-top: 1px
-    }
-
-    .net-period {
-        margin-left: auto;
+    .sec-period {
         font-size: 11px;
-        font-weight: 500;
-        padding: 4px 12px;
+        color: var(--ink3);
+        margin-left: auto;
+        padding: 3px 10px;
         border-radius: 20px
     }
 
-    .net-period.fb {
+    .sec-period.fb {
         background: #EFF6FF;
-        color: #1877F2
+        color:#1877F2
     }
 
-    .net-period.li {
+    .sec-period.li {
         background: var(--blue3);
         color: var(--blue2)
-    }/* SECTION */
-    .net-section {
-        margin-bottom: 40px
-    }/* GRID */
+    }
+
+    .sec-line {
+        height: 2px;
+        border-radius: 2px;
+        margin-bottom: 16px
+    }
+
+    .sec-line.fb {
+        background:#1877F2
+    }
+
+    .sec-line.li {
+        background: var(--blue)
+    }/* ALERT BANNER */
+    .alert {
+        border-radius: var(--r);
+        padding: 14px 18px;
+        margin-bottom: 16px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start
+    }
+
+    .alert.red {
+        background: var(--redb);
+        border: 1px solid #FECACA
+    }
+
+    .alert.green {
+        background: var(--greenb);
+        border: 1px solid #A7F3D0
+    }
+
+    .alert.amber {
+        background: var(--goldb);
+        border: 1px solid #FDE68A
+    }
+
+    .alert.blue {
+        background: var(--blue3);
+        border: 1px solid #BFDBFE
+    }
+
+    .alert-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+        margin-top: 1px
+    }
+
+    .alert-title {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 3px
+    }
+
+    .alert-title.red {
+        color:var(--red2)
+    }
+
+    .alert-title.green {
+        color:#065F46
+    }
+
+    .alert-title.blue {
+        color: var(--blue2)
+    }
+
+    .alert-body {
+        font-size: 13px;
+        line-height: 1.6
+    }
+
+    .alert-body.red {
+        color:#7F1D1D
+    }
+
+    .alert-body.green {
+        color:#064E3B
+    }
+
+    .alert-body.blue {
+        color: var(--blue2)
+    }/* GRIDS */
     .grid {
         display: grid;
-        gap: 14px;
-        margin-bottom: 14px
+        gap: 12px;
+        margin-bottom: 12px
     }
 
     .g2 {
-        grid-template-columns: 1fr 1fr
+        grid-template-columns:1fr 1fr
     }
 
     .g3 {
-        grid-template-columns: repeat(3, 1fr)
+        grid-template-columns:repeat(3, 1fr)
     }
 
     .g4 {
@@ -286,13 +344,7 @@
         background: var(--white);
         border-radius: var(--r);
         border: 1px solid rgba(13, 17, 23, .07);
-        padding: 20px 18px;
-        transition: transform .2s, box-shadow .2s
-    }
-
-    .mc:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, .08)
+        padding: 18px 16px
     }
 
     .mc.t {
@@ -300,27 +352,31 @@
     }
 
     .mc.b {
-        border-top:3px solid var(--blue)
+        border-top: 3px solid var(--blue)
+    }
+
+    .mc.fb-t {
+        border-top:3px solid #1877F2
+    }
+
+    .mc.red-t {
+        border-top: 3px solid var(--red)
     }
 
     .mc.go {
         border-top:3px solid var(--gold)
     }
 
-    .mc.fb-t {
-        border-top: 3px solid #1877F2
-    }
-
     .mc.dim {
-        background: rgba(13, 17, 23, .03);
+        background: rgba(13, 17, 23, .025);
         border-color: rgba(13, 17, 23, .04)
     }
 
     .mn {
         font-family: var(--serif);
-        font-size: clamp(22px, 2.5vw, 30px);
+        font-size: clamp(20px, 2.5vw, 28px);
         line-height: 1;
-        margin-bottom: 6px
+        margin-bottom: 5px
     }
 
     .mn.g {
@@ -332,46 +388,54 @@
     }
 
     .mn.a {
-        color:var(--gold)
-    }
-
-    .mn.s {
-        color:var(--slate)
+        color: var(--gold)
     }
 
     .mn.r {
-        color:var(--down)
+        color:var(--red)
     }
 
     .mn.fb {
-        color: #1877F2
+        color:#1877F2
+    }
+
+    .mn.s {
+        color: var(--slate)
     }
 
     .ml {
         font-size: 12px;
+        color: var(--ink2);
+        line-height: 1.3;
+        margin-bottom: 2px
+    }
+
+    .md {
+        font-size: 10px;
         color: var(--ink3);
-        line-height: 1.4
+        font-style: italic;
+        line-height: 1.3
     }
 
     .dt {
         display: inline-flex;
         align-items: center;
         gap: 3px;
-        margin-top: 7px;
+        margin-top: 6px;
         font-size: 11px;
         font-weight: 500;
-        padding: 3px 9px;
+        padding: 2px 8px;
         border-radius: 20px
     }
 
     .dt.up {
-        background: #D1FAE5;
-        color:var(--up)
+        background: var(--greenb);
+        color:var(--green)
     }
 
     .dt.dn {
-        background: var(--downb);
-        color: var(--down)
+        background: var(--redb);
+        color: var(--red)
     }
 
     .dt.tl {
@@ -392,17 +456,17 @@
     .dt.am {
         background: var(--goldb);
         color: var(--gold)
-    }/* CHART CARD */
+    }/* CHART */
     .cw {
         background: var(--white);
         border-radius: var(--r);
         border: 1px solid rgba(13, 17, 23, .07);
-        padding: 20px 20px 14px;
-        margin-bottom: 14px
+        padding: 18px 18px 12px;
+        margin-bottom: 12px
     }
 
     .ct {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
         color: var(--ink2);
         margin-bottom: 2px
@@ -411,35 +475,36 @@
     .cs {
         font-size: 11px;
         color: var(--ink3);
-        margin-bottom: 14px
-    }/* CHART + SIDE LAYOUT */
+        margin-bottom: 12px
+    }
+
     .chart-side {
         display: grid;
         grid-template-columns: 2fr 1fr;
-        gap: 14px;
-        margin-bottom: 14px
+        gap: 12px;
+        margin-bottom: 12px
     }/* DAILY BARS */
     .daily {
         display: flex;
         flex-direction: column;
-        gap: 7px;
-        margin-bottom: 14px
+        gap: 6px;
+        margin-bottom: 12px
     }
 
-    .daily-row {
+    .drow {
         display: flex;
         align-items: center;
-        gap: 10px
+        gap: 8px
     }
 
-    .daily-date {
-        font-size: 12px;
+    .ddate {
+        font-size: 11px;
         color: var(--ink3);
-        min-width: 88px;
+        min-width: 86px;
         white-space: nowrap
     }
 
-    .daily-track {
+    .dtrack {
         flex: 1;
         height: 8px;
         background: rgba(13, 17, 23, .06);
@@ -447,85 +512,124 @@
         overflow: hidden
     }
 
-    .daily-fill {
+    .dfill {
         height: 100%;
-        border-radius: 4px;
-        transition: width 1s ease
+        border-radius: 4px
     }
 
-    .daily-fill.fb {
+    .dfill.fb {
         background:#1877F2
     }
 
-    .daily-fill.li {
-        background: var(--blue)
+    .dfill.li {
+        background:var(--blue)
     }
 
-    .daily-fill.peak {
-        background: var(--gold)
+    .dfill.peak {
+        background:var(--gold)
     }
 
-    .daily-val {
-        font-size: 12px;
+    .dfill.low {
+        background: #CBD5E1
+    }
+
+    .dval {
+        font-size: 11px;
         font-weight: 500;
-        color: var(--ink);
         min-width: 52px;
         text-align: right
     }
 
-    .daily-val.peak {
-        color: var(--gold)
-    }/* INSIGHT STRIP */
-    .insight {
-        background: var(--teal3);
+    .dval.peak {
+        color:var(--gold)
+    }
+
+    .dval.low {
+        color: var(--slate)
+    }/* RECOMENDACIONES */
+    .recs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px
+    }
+
+    .rec {
+        background: var(--white);
         border-radius: var(--r);
-        border-left: 3px solid var(--teal);
-        padding: 14px 16px;
-        margin-bottom: 14px
+        border: 1px solid rgba(13, 17, 23, .07);
+        padding: 16px 18px 16px 16px;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start
     }
 
-    .insight.blue {
-        background: var(--blue3);
-        border-color: var(--blue)
+    .rec.urgent {
+        border-left: 4px solid var(--red);
+        background: #FFFBFB
     }
 
-    .insight.warn {
-        background: var(--downb);
-        border-color: var(--down)
+    .rec.action {
+        border-left: 4px solid var(--teal)
     }
 
-    .insight-title {
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--teal2);
+    .rec.info {
+        border-left: 4px solid var(--blue)
+    }
+
+    .rec-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+        margin-top: 1px
+    }
+
+    .rec-body {
+    }
+
+    .rec-tag {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
         margin-bottom: 4px
     }
 
-    .insight-title.blue {
-        color:var(--blue2)
+    .rec-tag.urgent {
+        color:var(--red)
     }
 
-    .insight-title.warn {
-        color: var(--down)
+    .rec-tag.action {
+        color:var(--teal2)
     }
 
-    .insight-body {
+    .rec-tag.info {
+        color: var(--blue2)
+    }
+
+    .rec-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink);
+        margin-bottom: 4px
+    }
+
+    .rec-desc {
         font-size: 13px;
         color: var(--ink2);
-        line-height: 1.65
+        line-height: 1.6
     }
 
-    .insight-body strong {
+    .rec-desc strong {
         color: var(--ink)
-    }/* DIVIDER */
+    }/* NET DIVIDER */
     .net-divider {
         height: 1px;
         background: rgba(13, 17, 23, .08);
-        margin: 40px 0
+        margin: 28px 0
     }/* FOOTER */
     .footer {
-        margin-top: 40px;
-        padding-top: 24px;
+        margin-top: 32px;
+        padding-top: 20px;
         border-top: 1px solid rgba(13, 17, 23, .08);
         display: flex;
         justify-content: space-between;
@@ -536,7 +640,7 @@
 
     .footer-brand {
         font-family: var(--serif);
-        font-size:16px
+        font-size:15px
     }
 
     .footer-brand span {
@@ -544,28 +648,29 @@
     }
 
     .footer-meta {
-        font-size: 12px;
+        font-size: 11px;
         color: var(--ink3);
         margin-top: 2px
     }
 
-    .footer-pill {
+    .footer-internal {
         font-size: 11px;
-        background: var(--teal3);
-        color: var(--teal2);
-        padding: 5px 14px;
+        background: var(--redb);
+        color: var(--red2);
+        padding: 4px 12px;
         border-radius: 20px;
         font-weight: 500
-    }/* RESPONSIVE */
+    }
+
     @media (max-width: 1000px) {
         .header {
-            padding: 28px 28px 32px;
-            border-radius: 0 0 18px 18px
+            padding: 24px 24px 28px;
+            border-radius: 0 0 16px 16px
         }
 
         .header-inner {
             grid-template-columns: 1fr;
-            gap: 24px
+            gap: 20px
         }
 
         .hscores {
@@ -574,7 +679,7 @@
         }
 
         .g4 {
-            grid-template-columns: repeat(2, 1fr)
+            grid-template-columns:repeat(2, 1fr)
         }
 
         .g3 {
@@ -586,24 +691,16 @@
         }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 600px) {
         .page {
-            padding: 0 16px 48px
+            padding: 0 14px 40px
         }
 
         .header {
-            padding: 22px 18px 26px
+            padding: 20px 16px 22px
         }
 
-        .g2 {
-            grid-template-columns: 1fr 1fr
-        }
-
-        .g3 {
-            grid-template-columns: 1fr 1fr
-        }
-
-        .g4 {
+        .g2, .g3, .g4 {
             grid-template-columns: 1fr 1fr
         }
 
@@ -614,370 +711,437 @@
     </style>
 </head>
 <body>
-    <div class="page">
 
-        <!-- HEADER -->
-        <div class="header">
-            <div class="header-inner">
-                <div>
-                    <div class="header-meta">
-                        <div class="header-brand">
-                            STIL 
-                            <span>·</span>
-                             El Pulso
-                        </div>
-                        <div class="header-pill">Semana 21 · 2026</div>
-                        <div class="header-date">19 – 25 May 2026</div>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-left">
+                <div class="header-top">
+                    <div class="header-brand">
+                        STIL 
+                        <span>·</span>
+                         El Pulso
                     </div>
-                    <h1 class="header-headline">
-
-                                Facebook: 
-                        <em>34,868 personas</em>
-                        <br>
-
-                                LinkedIn: 
-                        <em>635 seguidores B2B</em>
-                    </h1>
-                    <p class="header-sub">Dos redes, dos historias. Facebook consolida su presencia con alcance semanal activo. LinkedIn suma seguidores B2B en su segundo mes de vida.</p>
+                    <div class="header-internal">🔒 Uso interno · Great Revenue</div>
+                    <div class="header-week">Semana del 26 May – 2 Jun 2026</div>
                 </div>
-                <div class="hscores">
-                    <div class="hscore">
-                        <div class="hscore-num">
-                            <span class="r">-19.6%</span>
-                        </div>
-                        <div class="hscore-lbl">
-                            Variación alcance
-                            <br>
-                            FB vs sem. anterior
-                        </div>
+                <div class="header-headline">
+
+                            FB: 
+                    <span class="r">caída esta semana</span>
+                    <br>
+
+                            LI: 
+                    <span class="g">crecimiento constante</span>
+                </div>
+                <p class="header-sub">Diagnóstico semanal para ajustes de estrategia inmediatos. Incluye alertas, análisis por red y recomendaciones de acción para esta semana.</p>
+            </div>
+            <div class="hscores">
+                <div class="hs">
+                    <div class="hs-num">
+                        <span class="r">-47.9%</span>
                     </div>
-                    <div class="hscore">
-                        <div class="hscore-num">
-                            <span class="g">+76</span>
-                        </div>
-                        <div class="hscore-lbl">
-                            Nuevos seguidores
-                            <br>
-                            Facebook esta semana
-                        </div>
+                    <div class="hs-lbl">
+                        Alcance FB
+                        <br>
+                        vs semana anterior
                     </div>
-                    <div class="hscore">
-                        <div class="hscore-num">
-                            <span class="b">635</span>
-                        </div>
-                        <div class="hscore-lbl">
-                            Seguidores
-                            <br>
-                            LinkedIn hoy
-                        </div>
+                </div>
+                <div class="hs">
+                    <div class="hs-num">
+                        <span class="g">+75</span>
                     </div>
-                    <div class="hscore">
-                        <div class="hscore-num">
-                            <span class="b">+2</span>
-                        </div>
-                        <div class="hscore-lbl">
-                            Nuevos seguidores
-                            <br>
-                            LinkedIn esta semana
-                        </div>
+                    <div class="hs-lbl">
+                        Nuevos seguidores
+                        <br>
+                        Facebook esta semana
+                    </div>
+                </div>
+                <div class="hs">
+                    <div class="hs-num">
+                        <span class="b">636</span>
+                    </div>
+                    <div class="hs-lbl">
+                        Seguidores
+                        <br>
+                        LinkedIn hoy
+                    </div>
+                </div>
+                <div class="hs">
+                    <div class="hs-num">
+                        <span class="b">+1</span>
+                    </div>
+                    <div class="hs-lbl">
+                        Nuevo seguidor
+                        <br>
+                        LinkedIn esta semana
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- ══════════════ FACEBOOK ══════════════ -->
-        <div class="net-section">
-            <div class="net-header fb">
-                <div class="net-icon fb">f</div>
-                <div>
-                    <div class="net-header-title">Facebook</div>
-                    <div class="net-header-sub">Servicio de Transporte Internacional y Local</div>
+    <div class="page">
+
+        <!-- ══ FACEBOOK ══ -->
+        <div class="sec-label">
+            <div class="net-icon fb">f</div>
+            <div class="sec-title">Facebook · Diagnóstico semanal</div>
+            <div class="sec-period fb">30 Abr – 1 Jun 2026</div>
+        </div>
+        <div class="sec-line fb"></div>
+
+        <!-- ALERTA CAÍDA -->
+        <div class="alert red">
+            <div class="alert-icon">⚠️</div>
+            <div>
+                <div class="alert-title red">Alerta: caída de alcance esta semana</div>
+                <div class="alert-body red">
+                    El alcance bajó 
+                    <strong>-47.9%</strong>
+                     respecto a la semana anterior. El período 30 Abr – 1 Jun alcanzó 29,016 personas vs 55,788 de la semana previa. La causa probable: 
+                    <strong>menor frecuencia de publicación y ausencia de contenido de operadores</strong>
+                    . Ver recomendaciones abajo.
                 </div>
-                <div class="net-period fb">15 Abr – 22 May 2026</div>
+            </div>
+        </div>
+
+        <!-- CONTEXTO POSITIVO -->
+        <div class="alert green">
+            <div class="alert-icon">✅</div>
+            <div>
+                <div class="alert-title green">Contexto: Q2 sigue siendo el mejor trimestre del año</div>
+                <div class="alert-body green">
+                    A pesar de la caída semanal, Q2 acumula 70,069 personas alcanzadas vs 37,374 en Q1 — un 
+                    <strong>+87.5% de crecimiento</strong>
+                    . Esta semana es un bache, no una tendencia.
+                </div>
             </div>
         </div>
 
         <!-- FB KPIs -->
-        <div class="grid g4" style="margin-bottom:14px">
-            <div class="mc fb-t">
-                <div class="mn fb">34,868</div>
-                <div class="ml">Alcance publicaciones</div>
-                <div class="dt dn">↓ -19.6% vs sem. ant.</div>
+        <div class="grid g4" style="margin-bottom:12px">
+            <div class="mc red-t">
+                <div class="mn r">29,016</div>
+                <div class="ml">Personas alcanzadas esta semana</div>
+                <div class="md">30 Abr – 1 Jun · período activo</div>
+                <div class="dt dn">↓ -47.9% vs sem. ant.</div>
             </div>
             <div class="mc">
-                <div class="mn">22,167</div>
-                <div class="ml">Alcance de perfil</div>
-                <div class="dt sl">período activo</div>
+                <div class="mn">14,690</div>
+                <div class="ml">Alcance del perfil esta semana</div>
+                <div class="md">Personas que visitaron el perfil de STIL</div>
             </div>
-            <div class="mc">
-                <div class="mn g">6,411</div>
-                <div class="ml">Seguidores actuales</div>
-                <div class="dt up">+76 esta semana</div>
+            <div class="mc t">
+                <div class="mn g">6,436</div>
+                <div class="ml">Total de seguidores FB hoy</div>
+                <div class="md">Comunidad acumulada</div>
+                <div class="dt up">+75 esta semana</div>
             </div>
             <div class="mc go">
-                <div class="mn a">12,152</div>
-                <div class="ml">Mejor día · 24 Abr</div>
-                <div class="dt am">pico del período</div>
+                <div class="mn a">11,858</div>
+                <div class="ml">Mejor día de la semana</div>
+                <div class="md">Viernes 22 May · como siempre, viernes lidera</div>
+                <div class="dt am">viernes = mejor día</div>
             </div>
         </div>
 
-        <!-- FB Chart + insight -->
+        <!-- CHART DIARIO + SEMANAS -->
         <div class="chart-side">
             <div class="cw" style="margin-bottom:0">
-                <div class="ct">Alcance diario Facebook · período activo</div>
-                <div class="cs">Personas alcanzadas por día. Dorado = mejor día del período.</div>
-                <div style="position:relative;height:210px">
+                <div class="ct">Alcance diario · período activo Facebook</div>
+                <div class="cs">Dorado = mejor día. Rojo = días bajos que necesitan atención.</div>
+                <div style="position:relative;height:200px">
                     <canvas id="chartFBDaily">
                     </canvas>
                 </div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:12px">
-                <div class="insight" style="flex:1;margin-bottom:0">
-                    <div class="insight-title">Contexto de la semana</div>
-                    <div class="insight-body">
-                        La variación de 
-                        <strong>-19.6%</strong>
-                         respecto a la semana anterior se explica por la comparación contra 
-                        <strong>el período de mayor actividad de abril</strong>
-                        . El alcance acumulado de Q2 sigue siendo 
-                        <strong>+54.8% por encima de Q1</strong>
-                        .
-                    </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+                <div class="mc fb-t">
+                    <div class="mn fb">70,069</div>
+                    <div class="ml">Alcance acumulado Q2</div>
+                    <div class="md">El trimestre va bien a pesar del bache</div>
+                    <div class="dt up">↑ +87.5% vs Q1</div>
                 </div>
-                <div class="insight warn" style="flex:0;margin-bottom:0">
-                    <div class="insight-title warn">Para esta semana</div>
-                    <div class="insight-body">Mayo va más lento que abril. Incrementar la frecuencia de publicación con contenido de operadores puede recuperar el nivel de alcance del mes anterior.</div>
+                <div class="mc dim">
+                    <div class="mn s">37,374</div>
+                    <div class="ml">Alcance acumulado Q1</div>
+                    <div class="md">Referencia comparativa</div>
                 </div>
             </div>
         </div>
 
-        <!-- FB Daily detail -->
+        <!-- DESGLOSE DIARIO -->
         <div class="cw">
-            <div class="ct">Desglose diario · alcance de publicaciones</div>
-            <div class="cs">Cada día activo con publicación. El máximo del período fue el 24 de abril.</div>
+            <div class="ct">Desglose día a día · período activo</div>
+            <div class="cs">Patrón visible: los viernes (22 May, 26 May) generan el mayor alcance. Los lunes y jueves son los más bajos.</div>
             <div class="daily">
-                <div class="daily-row">
-                    <div class="daily-date">Vie 24 Abr</div>
-                    <div class="daily-track">
-                        <div class="daily-fill peak" style="width:100%"></div>
+                <div class="drow">
+                    <div class="ddate">Jue 30 Abr</div>
+                    <div class="dtrack">
+                        <div class="dfill low" style="width:10%"></div>
                     </div>
-                    <div class="daily-val peak">12,152</div>
+                    <div class="dval low">1,184</div>
                 </div>
-                <div class="daily-row">
-                    <div class="daily-date">Vie 22 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill fb" style="width:74%"></div>
+                <div class="drow">
+                    <div class="ddate">Mar 05 May</div>
+                    <div class="dtrack">
+                        <div class="dfill fb" style="width:43%"></div>
                     </div>
-                    <div class="daily-val">8,964</div>
+                    <div class="dval">5,120</div>
                 </div>
-                <div class="daily-row">
-                    <div class="daily-date">Mié 15 Abr</div>
-                    <div class="daily-track">
-                        <div class="daily-fill fb" style="width:51%"></div>
+                <div class="drow">
+                    <div class="ddate">Lun 11 May</div>
+                    <div class="dtrack">
+                        <div class="dfill low" style="width:10%"></div>
                     </div>
-                    <div class="daily-val">6,201</div>
+                    <div class="dval low">1,150</div>
                 </div>
-                <div class="daily-row">
-                    <div class="daily-date">Mar 05 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill fb" style="width:38%"></div>
+                <div class="drow">
+                    <div class="ddate">Jue 14 May</div>
+                    <div class="dtrack">
+                        <div class="dfill low" style="width:8%"></div>
                     </div>
-                    <div class="daily-val">4,626</div>
+                    <div class="dval low">915</div>
                 </div>
-                <div class="daily-row">
-                    <div class="daily-date">Jue 30 Abr</div>
-                    <div class="daily-track">
-                        <div class="daily-fill fb" style="width:9%"></div>
+                <div class="drow">
+                    <div class="ddate">Vie 22 May ⭐</div>
+                    <div class="dtrack">
+                        <div class="dfill peak" style="width:100%"></div>
                     </div>
-                    <div class="daily-val">1,119</div>
+                    <div class="dval peak">11,858</div>
                 </div>
-                <div class="daily-row">
-                    <div class="daily-date">Lun 11 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill fb" style="width:8%"></div>
+                <div class="drow">
+                    <div class="ddate">Mar 26 May</div>
+                    <div class="dtrack">
+                        <div class="dfill fb" style="width:61%"></div>
                     </div>
-                    <div class="daily-val">1,021</div>
+                    <div class="dval">7,227</div>
                 </div>
-                <div class="daily-row">
-                    <div class="daily-date">Jue 14 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill fb" style="width:6%"></div>
+                <div class="drow">
+                    <div class="ddate">Lun 01 Jun</div>
+                    <div class="dtrack">
+                        <div class="dfill low" style="width:13%"></div>
                     </div>
-                    <div class="daily-val">785</div>
+                    <div class="dval low">1,562</div>
                 </div>
             </div>
         </div>
 
-        <!-- FB Seguidores + contexto 2026 -->
-        <div class="chart-side">
-            <div class="cw" style="margin-bottom:0">
-                <div class="ct">Alcance mensual Facebook · 2026</div>
-                <div class="cs">Q1 (gris) vs Q2 con Pintaando (verde). Abril fue el mejor mes del año.</div>
-                <div style="position:relative;height:180px">
-                    <canvas id="chartFBMonthly">
-                    </canvas>
-                </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px">
-                <div class="mc t" style="flex:1">
-                    <div class="mn g">6,411</div>
-                    <div class="ml">Seguidores Facebook hoy</div>
-                    <div class="dt up">↑ +76 esta semana</div>
-                </div>
-                <div class="mc">
-                    <div class="mn">6,293</div>
-                    <div class="ml">Seguidores al inicio de Q2</div>
-                    <div class="dt sl">1 Abr 2026</div>
-                </div>
-                <div class="mc">
-                    <div class="mn a">+118</div>
-                    <div class="ml">Crecimiento en Q2</div>
-                    <div class="dt am">sin ads</div>
-                </div>
+        <!-- FB MENSUAL CONTEXTO -->
+        <div class="cw">
+            <div class="ct">Alcance mensual Facebook · 2026 · Q1 (gris) vs Q2 (azul)</div>
+            <div class="cs">Mayo cierra en 26,270 — por encima de cualquier mes de Q1. El bache semanal no cambia la tendencia del trimestre.</div>
+            <div style="position:relative;height:180px">
+                <canvas id="chartFBMonthly">
+                </canvas>
             </div>
         </div>
 
-        <!-- FB acumulados -->
-        <div class="grid g4" style="margin-bottom:0">
-            <div class="mc dim">
-                <div class="mn">303,661</div>
-                <div class="ml">Alcance total acumulado</div>
+        <!-- ══ RECOMENDACIONES FACEBOOK ══ -->
+        <div style="margin:20px 0 8px">
+            <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Recomendaciones · Facebook · Esta semana</div>
+        </div>
+        <div class="recs">
+            <div class="rec urgent">
+                <div class="rec-icon">🚨</div>
+                <div class="rec-body">
+                    <div class="rec-tag urgent">Acción urgente</div>
+                    <div class="rec-title">Publicar contenido de operadores este viernes</div>
+                    <div class="rec-desc">
+                        El alcance cayó -47.9% porque hubo menos publicaciones de alto impacto. 
+                        <strong>Los viernes son consistentemente el mejor día</strong>
+                         — el 22 de mayo (viernes) fue el día más alto de la semana con 11,858 personas. Publicar un post de operadores o cultura interna este viernes es la acción de mayor impacto inmediato para recuperar el alcance.
+                    </div>
+                </div>
             </div>
-            <div class="mc dim">
-                <div class="mn">496,725</div>
-                <div class="ml">Impresiones acumuladas</div>
+            <div class="rec action">
+                <div class="rec-icon">📅</div>
+                <div class="rec-body">
+                    <div class="rec-tag action">Acción esta semana</div>
+                    <div class="rec-title">Aumentar la frecuencia a mínimo 3 publicaciones esta semana</div>
+                    <div class="rec-desc">
+                        En los días con mayor alcance del período, hubo publicación activa. 
+                        <strong>Los días sin publicación o con contenido de bajo impacto (institucional, texto solo) generan caídas</strong>
+                        . Para recuperar el nivel de alcance: publicar martes (apertura de semana), jueves y viernes — priorizando contenido visual con personas reales.
+                    </div>
+                </div>
             </div>
-            <div class="mc dim">
-                <div class="mn">1,698</div>
-                <div class="ml">Clicks a enlaces total</div>
-            </div>
-            <div class="mc dim">
-                <div class="mn">2,306</div>
-                <div class="ml">Reacciones acumuladas</div>
+            <div class="rec info">
+                <div class="rec-icon">🏷️</div>
+                <div class="rec-body">
+                    <div class="rec-tag info">Pendiente de equipo</div>
+                    <div class="rec-title">Etiquetar el contenido de esta semana por categoría</div>
+                    <div class="rec-desc">
+                        Para poder medir qué tipo de contenido genera más alcance semana a semana, 
+                        <strong>cada publicación necesita una etiqueta de categoría</strong>
+                         (ej: #OperadoresSTIL, #CulturaInterna, #ServicioSTIL, #LogísticaMéxico). Sin etiquetas no podemos comparar rendimiento por tipo de contenido en futuras semanas.
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- DIVIDER -->
         <div class="net-divider"></div>
 
-        <!-- ══════════════ LINKEDIN ══════════════ -->
-        <div class="net-section">
-            <div class="net-header li">
-                <div class="net-icon li">in</div>
-                <div>
-                    <div class="net-header-title">LinkedIn</div>
-                    <div class="net-header-sub">STIL | Servicio de Transporte Internacional y Local · Canal activo desde Abr 2026</div>
+        <!-- ══ LINKEDIN ══ -->
+        <div class="sec-label">
+            <div class="net-icon li">in</div>
+            <div class="sec-title">LinkedIn · Diagnóstico semanal</div>
+            <div class="sec-period li">27 May – 2 Jun 2026</div>
+        </div>
+        <div class="sec-line li"></div>
+
+        <!-- ESTADO LINKEDIN -->
+        <div class="alert blue">
+            <div class="alert-icon">ℹ️</div>
+            <div>
+                <div class="alert-title blue">Canal estable · crecimiento bajo esta semana</div>
+                <div class="alert-body blue">
+                    LinkedIn sumó 
+                    <strong>+1 seguidor esta semana</strong>
+                     y 59 de alcance de perfil. El crecimiento es lento pero constante. La semana del 27 May–2 Jun fue de baja actividad de publicación en LinkedIn — eso se refleja directamente en el alcance.
                 </div>
-                <div class="net-period li">19 – 25 May 2026</div>
             </div>
         </div>
 
-        <!-- LI KPIs semana -->
-        <div class="grid g4" style="margin-bottom:14px">
+        <!-- LI KPIs -->
+        <div class="grid g4" style="margin-bottom:12px">
             <div class="mc b">
-                <div class="mn b">635</div>
-                <div class="ml">Seguidores B2B hoy</div>
-                <div class="dt up">↑ +2 esta semana</div>
+                <div class="mn b">636</div>
+                <div class="ml">Contactos B2B en LinkedIn hoy</div>
+                <div class="md">Directivos y decisores de compra</div>
+                <div class="dt bl">+1 esta semana</div>
             </div>
             <div class="mc">
-                <div class="mn">63</div>
-                <div class="ml">Alcance de perfil semana</div>
-                <div class="dt bl">canal activo</div>
+                <div class="mn">59</div>
+                <div class="ml">Alcance de perfil esta semana</div>
+                <div class="md">Personas que vieron el perfil de STIL</div>
+                <div class="dt sl">semana baja</div>
             </div>
             <div class="mc">
-                <div class="mn b">+15</div>
-                <div class="ml">Crecimiento desde inicio Q2</div>
-                <div class="dt bl">desde 620 · 1 Abr</div>
+                <div class="mn b">221</div>
+                <div class="ml">Visitas al sitio desde LinkedIn</div>
+                <div class="md">Acumulado Q2 · tráfico comercial</div>
+                <div class="dt bl">acumulado Q2</div>
             </div>
-            <div class="mc">
-                <div class="mn">1,271</div>
-                <div class="ml">Clicks acumulados Q2</div>
-                <div class="dt bl">tráfico B2B generado</div>
+            <div class="mc dim">
+                <div class="mn s">0</div>
+                <div class="ml">Contactos en Q1</div>
+                <div class="md">El canal no existía antes de abril</div>
+                <div class="dt sl">referencia</div>
             </div>
         </div>
 
-        <!-- LI Chart + insight -->
+        <!-- LI CHART + DESGLOSE -->
         <div class="chart-side">
             <div class="cw" style="margin-bottom:0">
-                <div class="ct">Seguidores LinkedIn · Abr – May 2026</div>
-                <div class="cs">Crecimiento diario desde el arranque del canal. La tendencia es sostenida y constante.</div>
+                <div class="ct">Crecimiento de contactos B2B · LinkedIn · Abr–Jun 2026</div>
+                <div class="cs">Tendencia sostenida desde el arranque del canal. De 0 a 636 contactos de negocios.</div>
                 <div style="position:relative;height:180px">
                     <canvas id="chartLIFollowers">
                     </canvas>
                 </div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:12px">
-                <div class="insight blue" style="flex:1;margin-bottom:0">
-                    <div class="insight-title blue">¿Qué significa cada seguidor?</div>
-                    <div class="insight-body">
-                        LinkedIn es la red donde operan gerentes de logística, directores de supply chain y equipos de procurement de empresas como 
-                        <strong>Audi y Toyota</strong>
-                        . Cada seguidor tiene valor comercial directo para STIL.
+            <div style="display:flex;flex-direction:column;gap:10px">
+                <div class="cw" style="margin-bottom:0;flex:1">
+                    <div class="ct">Semana 27 May – 2 Jun</div>
+                    <div class="cs">Actividad diaria LinkedIn</div>
+                    <div class="daily" style="margin-bottom:0">
+                        <div class="drow">
+                            <div class="ddate">Mié 27 May</div>
+                            <div class="dtrack">
+                                <div class="dfill li" style="width:100%"></div>
+                            </div>
+                            <div class="dval">635</div>
+                        </div>
+                        <div class="drow">
+                            <div class="ddate">Jue 28 May</div>
+                            <div class="dtrack">
+                                <div class="dfill li" style="width:100%"></div>
+                            </div>
+                            <div class="dval">635</div>
+                        </div>
+                        <div class="drow">
+                            <div class="ddate">Vie 29 May</div>
+                            <div class="dtrack">
+                                <div class="dfill li" style="width:100%"></div>
+                            </div>
+                            <div class="dval">635</div>
+                        </div>
+                        <div class="drow">
+                            <div class="ddate">Sáb 30 May ⭐</div>
+                            <div class="dtrack">
+                                <div class="dfill peak" style="width:100%"></div>
+                            </div>
+                            <div class="dval peak">636</div>
+                        </div>
+                        <div class="drow">
+                            <div class="ddate">Dom 31 May</div>
+                            <div class="dtrack">
+                                <div class="dfill li" style="width:100%"></div>
+                            </div>
+                            <div class="dval">636</div>
+                        </div>
+                        <div class="drow">
+                            <div class="ddate">Lun 01 Jun</div>
+                            <div class="dtrack">
+                                <div class="dfill li" style="width:100%"></div>
+                            </div>
+                            <div class="dval">636</div>
+                        </div>
+                        <div class="drow">
+                            <div class="ddate">Mar 02 Jun</div>
+                            <div class="dtrack">
+                                <div class="dfill li" style="width:100%"></div>
+                            </div>
+                            <div class="dval">636</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- LI Daily -->
-        <div class="cw">
-            <div class="ct">Actividad diaria LinkedIn · semana 19–25 May</div>
-            <div class="cs">Evolución de seguidores y alcance de perfil día a día esta semana.</div>
-            <div class="daily">
-                <div class="daily-row">
-                    <div class="daily-date">Mar 19 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill li" style="width:100%"></div>
-                    </div>
-                    <div class="daily-val">633 seg.</div>
-                </div>
-                <div class="daily-row">
-                    <div class="daily-date">Mié 20 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill li" style="width:100%"></div>
-                    </div>
-                    <div class="daily-val">634 seg.</div>
-                </div>
-                <div class="daily-row">
-                    <div class="daily-date">Jue 21 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill li" style="width:100%"></div>
-                    </div>
-                    <div class="daily-val">633 seg.</div>
-                </div>
-                <div class="daily-row">
-                    <div class="daily-date">Vie 22 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill li" style="width:100%"></div>
-                    </div>
-                    <div class="daily-val">634 seg.</div>
-                </div>
-                <div class="daily-row">
-                    <div class="daily-date">Sáb 23 May</div>
-                    <div class="daily-track">
-                        <div class="daily-fill li peak" style="width:100%;background:var(--blue)"></div>
-                    </div>
-                    <div class="daily-val">635 seg.</div>
-                </div>
-            </div>
+        <!-- LI RECOMENDACIONES -->
+        <div style="margin:20px 0 8px">
+            <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)">Recomendaciones · LinkedIn · Esta semana</div>
         </div>
-
-        <!-- LI acumulados Q2 -->
-        <div class="grid g4" style="margin-bottom:0">
-            <div class="mc b">
-                <div class="mn b">635</div>
-                <div class="ml">Seguidores totales LinkedIn</div>
+        <div class="recs">
+            <div class="rec action">
+                <div class="rec-icon">✍️</div>
+                <div class="rec-body">
+                    <div class="rec-tag action">Acción esta semana</div>
+                    <div class="rec-title">Publicar al menos 2 posts en LinkedIn esta semana</div>
+                    <div class="rec-desc">
+                        El alcance de perfil cayó a 59 esta semana porque hubo baja actividad de publicación. 
+                        <strong>En LinkedIn, cada publicación expone el perfil de STIL a la red de cada seguidor</strong>
+                         — que son directivos y gerentes. Sin publicación, el canal es invisible. Mínimo 2 posts esta semana: uno de credenciales (Premio Ryder) y uno de caso de cliente.
+                    </div>
+                </div>
             </div>
-            <div class="mc">
-                <div class="mn">7,915</div>
-                <div class="ml">Impresiones Q2 acumuladas</div>
+            <div class="rec action">
+                <div class="rec-icon">🏆</div>
+                <div class="rec-body">
+                    <div class="rec-tag action">Oportunidad esta semana</div>
+                    <div class="rec-title">Usar el Premio Ryder para atraer seguidores B2B</div>
+                    <div class="rec-desc">
+                        El crecimiento de seguidores LinkedIn es de 
+                        <strong>+16 en todo Q2</strong>
+                        . Para acelerarlo, el contenido de credenciales — Premio Ryder 10 años consecutivos, casos Audi/Toyota — genera seguimiento de perfiles B2B de alto valor. Un post esta semana sobre el Premio Ryder puede generar 5–15 nuevos contactos de decisores.
+                    </div>
+                </div>
             </div>
-            <div class="mc">
-                <div class="mn b">1,271</div>
-                <div class="ml">Clicks a enlaces Q2</div>
-            </div>
-            <div class="mc">
-                <div class="mn">230</div>
-                <div class="ml">Reacciones Q2</div>
+            <div class="rec info">
+                <div class="rec-icon">👥</div>
+                <div class="rec-body">
+                    <div class="rec-tag info">Gestión de equipo</div>
+                    <div class="rec-title">Revisar participación del equipo en difusión de contenido</div>
+                    <div class="rec-desc">
+                        El alcance orgánico en LinkedIn se amplifica cuando los 
+                        <strong>miembros del equipo de STIL interactúan con las publicaciones</strong>
+                         (like, comentario, compartir). Si hay baja participación interna, el algoritmo de LinkedIn reduce la distribución. Coordinar con el equipo para que interactúen con al menos 1 publicación por semana.
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -987,37 +1151,37 @@
                 <div class="footer-brand">
                     STIL 
                     <span>·</span>
-                     El Pulso Semanal · Pintaando
+                     El Pulso · Great Revenue
                 </div>
-                <div class="footer-meta">Facebook: 15 Abr – 22 May · LinkedIn: 19–25 May 2026</div>
+                <div class="footer-meta">Semana 26 May – 2 Jun 2026 · Facebook & LinkedIn · Uso interno</div>
             </div>
-            <div class="footer-pill">Datos: Hootsuite Export</div>
+            <div class="footer-internal">🔒 Documento interno</div>
         </div>
 
     </div>
 
     <script>
     Chart.defaults.font.family = "'DM Sans',system-ui,sans-serif";
-    Chart.defaults.font.size = 12;
+    Chart.defaults.font.size = 11;
     const gc = 'rgba(13,17,23,.06)',
         tc = '#9CA3AF';
     const tip = {
         backgroundColor: '#0D1117',
         titleColor: '#fff',
         bodyColor: 'rgba(255,255,255,.6)',
-        padding: 12,
+        padding: 10,
         cornerRadius: 8
     };
 
-    // 1. FB Daily bar
+    // FB Daily
     new Chart(document.getElementById('chartFBDaily'), {
         type: 'bar',
         data: {
-            labels: ['15 Abr', '24 Abr', '30 Abr', '05 May', '11 May', '14 May', '22 May'],
+            labels: ['30 Abr', '05 May', '11 May', '14 May', '22 May ⭐', '26 May', '01 Jun'],
             datasets: [{
                 label: 'Alcance',
-                data: [6201, 12152, 1119, 4626, 1021, 785, 8964],
-                backgroundColor: ['#90CAF9', '#B45309', '#90CAF9', '#90CAF9', '#BFDBFE', '#BFDBFE', '#1877F2'],
+                data: [1184, 5120, 1150, 915, 11858, 7227, 1562],
+                backgroundColor: ['#CBD5E1', '#93C5FD', '#CBD5E1', '#CBD5E1', '#B45309', '#3B82F6', '#CBD5E1'],
                 borderRadius: 5,
                 borderSkipped: false,
             }]
@@ -1059,16 +1223,16 @@
         }
     });
 
-    // 2. FB Monthly 2026
+    // FB Monthly
     new Chart(document.getElementById('chartFBMonthly'), {
         type: 'bar',
         data: {
-            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],
+            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
             datasets: [{
-                label: 'Alcance',
-                data: [22625, 12627, 1830, 42012, 15396],
-                backgroundColor: ['#CBD5E1', '#CBD5E1', '#CBD5E1', '#1877F2', '#6FA3D1'],
-                borderRadius: 5,
+                label: 'Personas alcanzadas',
+                data: [22704, 12785, 1885, 42237, 26270, 1562],
+                backgroundColor: ['#CBD5E1', '#CBD5E1', '#CBD5E1', '#1877F2', '#3B82F6', '#93C5FD'],
+                borderRadius: 4,
                 borderSkipped: false,
             }]
         },
@@ -1109,21 +1273,21 @@
         }
     });
 
-    // 3. LI Followers trend
+    // LI Followers
     new Chart(document.getElementById('chartLIFollowers'), {
         type: 'line',
         data: {
-            labels: ['01 Abr', '07 Abr', '14 Abr', '21 Abr', '28 Abr', '05 May', '12 May', '19 May', '25 May'],
+            labels: ['01 Abr', '07 Abr', '14 Abr', '21 Abr', '28 Abr', '05 May', '12 May', '19 May', '26 May', '02 Jun'],
             datasets: [{
-                label: 'Seguidores LinkedIn',
-                data: [620, 622, 625, 627, 629, 631, 633, 633, 635],
+                label: 'Contactos B2B',
+                data: [620, 621, 623, 625, 627, 629, 632, 633, 635, 636],
                 borderColor: '#2563EB',
                 backgroundColor: 'rgba(37,99,235,.08)',
                 fill: true,
                 tension: 0.4,
                 pointBackgroundColor: '#2563EB',
                 pointRadius: 3,
-                pointHoverRadius: 6,
+                pointHoverRadius: 5,
             }]
         },
         options: {
@@ -1136,7 +1300,7 @@
                 tooltip: {
                     ...tip,
                     callbacks: {
-                        label: ctx => ' ' + ctx.parsed.y.toLocaleString('es-MX') + ' seguidores'
+                        label: ctx => ' ' + ctx.parsed.y.toLocaleString('es-MX') + ' contactos'
                     }
                 }
             },
@@ -1146,7 +1310,8 @@
                         display: false
                     },
                     ticks: {
-                        color: tc
+                        color: tc,
+                        maxTicksLimit: 6
                     }
                 },
                 y: {
